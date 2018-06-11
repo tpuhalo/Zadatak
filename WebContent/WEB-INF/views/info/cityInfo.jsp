@@ -38,7 +38,7 @@ table, th, td {
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Grad <br /> <a href="${contextPath}" style="font-size: 20px">Dodaj
+				Grad <br /> <a href="${contextPath}/addCity" style="font-size: 20px">Dodaj
 					grad</a>
 			</caption>
 
@@ -54,7 +54,7 @@ table, th, td {
 					<td><c:out value="${city.name}" /></td>
 					<td><c:out value="${city.zipCode}" /></td>
 					<td><c:out value="${city.country.name}" /></td>
-					<td>Promijeni</td>
+					<td><a href="${contextPath}/editCity" style="font-size: 20px">Promijeni</a></td>
 					<td>Obrisi</td>
 				</tr>
 			</c:forEach>

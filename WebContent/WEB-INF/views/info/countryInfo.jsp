@@ -38,7 +38,7 @@ table, th, td {
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Drzava <br/> <a href="${contextPath}" style="font-size: 20px">Dodaj
+				Drzava <br/> <a href="${contextPath}/addCountry" style="font-size: 20px">Dodaj
 					drzavu</a>
 			</caption>
 

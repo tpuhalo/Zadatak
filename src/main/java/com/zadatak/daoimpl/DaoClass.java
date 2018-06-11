@@ -57,8 +57,8 @@ public abstract class DaoClass<T> implements DaoBase<T> {
 
 	@Override
 	public List<T> getAll() {
-		return getSession().createNamedQuery("FROM" + entityClass.getName().toLowerCase()).list();
-	}
+		return getSession().createQuery("select * from " + entityClass.toString().toLowerCase()).list();
+		}
 
 
 	@Override

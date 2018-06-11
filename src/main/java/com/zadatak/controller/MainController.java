@@ -56,7 +56,4 @@ public class MainController {
 		return "info/countryInfo";
 	}
 
-	public String actions() {
-		return null;
-	}
 }

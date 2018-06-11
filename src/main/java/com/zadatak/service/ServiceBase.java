@@ -2,8 +2,14 @@ package com.zadatak.service;
 
 import java.util.List;
 
+import javax.validation.Valid;
+/**
+ * Service interface for concrete objects
+ * 
+ */
 public interface ServiceBase<T> {
 
+	@Valid
 	public List<T> getAll();
 
 	public int create(T newInstance);

@@ -4,15 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zadatak.dao.DaoBase;
-import com.zadatak.domain.City;
+import com.zadatak.domain.Sex;
 
 @Service
-public class CityService extends ServiceClass<City> {
+public class SexService extends ServiceClass<Sex> {
 
 	@Autowired
-	static DaoBase<City> dao;
+	static DaoBase<Sex> dao;
 
-	public CityService() {
+	public SexService() {
 		super(dao);
 	}
 
