@@ -15,10 +15,9 @@ public abstract class DaoClass<T> implements DaoBase<T> {
 
 	private Class<T> entityClass;
 
-	
-	public void setClass( Class<T> entityClass ){
-	      this.entityClass = entityClass;
-	   }
+	public void setClass(Class<T> entityClass) {
+		this.entityClass = entityClass;
+	}
 
 	@Autowired
 	Session session = HibernateConfig.getSessionFactory().getCurrentSession();
@@ -55,7 +54,8 @@ public abstract class DaoClass<T> implements DaoBase<T> {
 	public List<T> getAll() {
 		session.beginTransaction();
 		List<T> result = session.createQuery("select * from " + this.entityClass.getName().toLowerCase()).list();
-		session.beginTransaction();
+		session.close();
+		;
 		return result;
 	}
 

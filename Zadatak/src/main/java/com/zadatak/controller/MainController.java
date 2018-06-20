@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zadatak.domain.Address;
 import com.zadatak.domain.City;
@@ -28,7 +29,7 @@ public class MainController {
 	@Autowired
 	CountryService countryBase;
 
-	@RequestMapping(value = "/city")
+	@RequestMapping(value = "/city", method=RequestMethod.GET)
 	public String cityList(Model model) {
 		List<City> city = cityBase.getAll();
 		model.addAttribute("city", city);
