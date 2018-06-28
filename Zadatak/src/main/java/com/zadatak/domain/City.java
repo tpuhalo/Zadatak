@@ -23,10 +23,12 @@ public class City {
 	
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "NAME")
 	private String name;
 	
 	@Size(max = 10, message = "* Max 10 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "ZIP_CODE")
 	private String zipCode;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)

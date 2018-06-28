@@ -16,6 +16,7 @@ public class Sex {
 	@Column(name = "ID")
 	private Long id;
 	
+	@Column(name = "NAME")
 	private String name;
 
 	public Sex(Long id, String name) {

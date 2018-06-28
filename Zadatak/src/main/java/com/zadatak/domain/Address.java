@@ -23,10 +23,12 @@ public class Address {
 
 	@Size(max = 50, message = "* Max 50 letters")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "STREET")
 	private String street;
 
 	@Size(max = 5, message = "* Max 5 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "STREET_NO")
 	private String streetNumber;
 
 	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)

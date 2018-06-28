@@ -24,19 +24,23 @@ public class Contact {
 
 	@Size(max = 20, message = "* Max 20 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "FIRST_NAME")
 	private String firstName;
 
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "LAST_NAME")
 	private String lastName;
 
 	@Size(max = 13, message = "* Max 13 characters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "PHONE")
 	private String phone;
 
 	@Email
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "EMAIL")
 	private String email;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)

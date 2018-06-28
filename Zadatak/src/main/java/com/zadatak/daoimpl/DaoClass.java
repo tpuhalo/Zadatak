@@ -20,10 +20,11 @@ public abstract class DaoClass<T> implements DaoBase<T> {
 	}
 
 	@Autowired
-	Session session = HibernateConfig.getSessionFactory().openSession();
+	Session session = HibernateConfig.getSessionFactory().getCurrentSession();
 
 	@Override
 	public T findById(Long id) {
+		session.beginTransaction();
 		return (T) session.get(this.entityClass, id);
 	}
 
@@ -54,8 +55,8 @@ public abstract class DaoClass<T> implements DaoBase<T> {
 	public List<T> getAll() {
 		session.beginTransaction();
 		List<T> result = session.createQuery("select * from " + this.entityClass.getName().toLowerCase()).list();
+		session.getTransaction().commit();
 		session.close();
-		;
 		return result;
 	}
 

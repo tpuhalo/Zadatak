@@ -20,14 +20,17 @@ public class Country {
 
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "NAME")
 	private String name;
 
 	@Size(max = 2, message = "* Max 2 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "ALPHA_2")
 	private String alpha2;
 
 	@Size(max = 3, message = "* Max 3 letters.")
 	@NotEmpty(message = "* Cannot be empty")
+	@Column(name = "ALPHA_3")
 	private String alpha3;
 
 	public Country() {
