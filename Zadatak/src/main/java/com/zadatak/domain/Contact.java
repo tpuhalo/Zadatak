@@ -20,7 +20,7 @@ public class Contact {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private int id;
+	private Long id;
 
 	@Size(max = 20, message = "* Max 20 letters.")
 	@NotEmpty(message = "* Cannot be empty")
@@ -49,7 +49,7 @@ public class Contact {
 	public Contact() {
 	}
 
-	public Contact(int id, String firstName, String lastName, String phone, String email, Sex sex, Address address) {
+	public Contact(Long id, String firstName, String lastName, String phone, String email, Sex sex, Address address) {
 		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -59,11 +59,11 @@ public class Contact {
 		this.addresses = address;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

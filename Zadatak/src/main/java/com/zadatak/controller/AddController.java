@@ -71,7 +71,7 @@ public class AddController {
 
 	@RequestMapping(value = "/contact", method = RequestMethod.POST)
 	public String submitContact(@Valid @ModelAttribute ("contact") Contact contact, Model model) {
-		contactBase.create(contact);
+		contactBase.save(contact);
 		return "info/contactInfo";
 	}
 
