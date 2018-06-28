@@ -15,7 +15,7 @@ public interface ServiceBase<T> {
 
 	public void update(T transientObject);
 
-	public T findById(int id);
+	public T findById(Long id);
 
 	void flush();
 
@@ -24,5 +24,6 @@ public interface ServiceBase<T> {
 	void deleteAll();
 
 	void saveOrUpdate(T entity);
+
 
 }

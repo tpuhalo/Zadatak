@@ -16,7 +16,7 @@ public class Country {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private int id;
+	private Long id;
 
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
@@ -33,18 +33,18 @@ public class Country {
 	public Country() {
 	}
 
-	public Country(int id, String name, String alpha2, String alpha3) {
+	public Country(Long id, String name, String alpha2, String alpha3) {
 		this.id = id;
 		this.name = name;
 		this.alpha2 = alpha2;
 		this.alpha3 = alpha3;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

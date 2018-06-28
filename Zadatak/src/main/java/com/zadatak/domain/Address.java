@@ -19,7 +19,7 @@ public class Address {
 	@Id
 	@GeneratedValue
 	@Column(name = "ID")
-	private int id;
+	private Long id;
 
 	@Size(max = 50, message = "* Max 50 letters")
 	@NotEmpty(message = "* Cannot be empty")
@@ -35,18 +35,18 @@ public class Address {
 	public Address() {
 	}
 
-	public Address(int id, String street, String streetNumber, City city) {
+	public Address(Long id, String street, String streetNumber, City city) {
 		this.id = id;
 		this.street = street;
 		this.streetNumber = streetNumber;
 		this.city = city;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

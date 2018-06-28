@@ -38,7 +38,7 @@ public class MainController {
 	
 	@RequestMapping(value = "/contact")
 	public String contactList(Model model) {
-		List<Contact> contact = (List<Contact>) contactBase.findAll();
+		List<Contact> contact = (List<Contact>) contactBase.getAll();
 		model.addAttribute("contact", contact);
 		return "info/contactInfo";
 	}

@@ -20,10 +20,10 @@ public abstract class DaoClass<T> implements DaoBase<T> {
 	}
 
 	@Autowired
-	Session session = HibernateConfig.getSessionFactory().getCurrentSession();
+	Session session = HibernateConfig.getSessionFactory().openSession();
 
 	@Override
-	public T findById(int id) {
+	public T findById(Long id) {
 		return (T) session.get(this.entityClass, id);
 	}
 

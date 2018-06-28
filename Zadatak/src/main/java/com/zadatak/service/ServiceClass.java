@@ -32,8 +32,8 @@ public abstract class ServiceClass<T> implements ServiceBase<T> {
 	}
 
 	@Override
-	public T findById(int id) {
-		return dao.findById(id);
+	public T findById(Long long1) {
+		return dao.findById(long1);
 	}
 
 	@Override

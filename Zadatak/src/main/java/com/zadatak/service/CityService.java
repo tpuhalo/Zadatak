@@ -17,5 +17,4 @@ public class CityService extends ServiceClass<City> {
 		dao.setClass(City.class);
 	}
 
-
 }

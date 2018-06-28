@@ -44,7 +44,7 @@ public interface DaoBase<T> {
 	 * @param identifier
 	 * @return Object type
 	 */
-	public T findById(int id);
+	public T findById(Long long1);
 
 	void flush();
 
