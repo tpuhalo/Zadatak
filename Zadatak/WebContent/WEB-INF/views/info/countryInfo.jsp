@@ -38,8 +38,8 @@ table, th, td {
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Drzava <br/> <a href="${contextPath}/addCountry" style="font-size: 20px">Dodaj
-					drzavu</a>
+				Drzava <br /> <a href="${contextPath}/addCountry"
+					style="font-size: 20px">Dodaj drzavu</a>
 			</caption>
 
 
@@ -53,13 +53,15 @@ table, th, td {
 					<td><c:out value="${country.name}" /></td>
 					<td><c:out value="${country.alpha2}" /></td>
 					<td><c:out value="${country.alpha3}" /></td>
-					<td>Promijeni</td>
-					<td>Obrisi</td>
+					<td><a href="${contextPath}/editCountry-${country.id}"
+						style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/editCountry-${add.id}"
+						style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>
 	</div>
-		<hr>
+	<hr>
 	<div align="right">
 		<a href="${contextPath}">Home</a> <br /> Tihomir Puhalo
 

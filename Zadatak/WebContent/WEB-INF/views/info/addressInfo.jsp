@@ -52,8 +52,8 @@ table, th, td {
 					<td><c:out value="${add.street}" /></td>
 					<td><c:out value="${add.streetNumber}" /></td>
 					<td><c:out value="${add.city.name}" /></td>
-					<td>Promijeni</td>
-					<td>Obrisi</td>
+					<td><a href="${contextPath}/editAddress-${add.id}" style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteAddress-${add.id}" style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>

@@ -63,8 +63,8 @@ table, th, td {
 					<td><c:out value="${con.addresses.street + con.addresses.streetNumber}" /></td>
 					<td><c:out value="${con.addresses.city.name}" /></td>
 					<td><c:out value="${con.addresses.city.country.name}" /></td>
-					<td>Promijeni</td>
-					<td>Obrisi</td>
+					<td><a href="${contextPath}/editContact-${con.id}" style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/editContact-${add.id}" style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>
