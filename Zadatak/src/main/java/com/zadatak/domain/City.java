@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
@@ -32,6 +33,7 @@ public class City {
 	private String zipCode;
 	
 	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
+	@JoinColumn(name="ID") 
 	private Country country;
 
 	public City() {}

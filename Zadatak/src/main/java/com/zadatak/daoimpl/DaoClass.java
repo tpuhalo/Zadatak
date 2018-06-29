@@ -1,75 +1,48 @@
 package com.zadatak.daoimpl;
 
-import java.util.List;
+import java.io.Serializable;
 
+import java.lang.reflect.ParameterizedType;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 
-import com.zadatak.config.HibernateConfig;
 import com.zadatak.dao.DaoBase;
 
-@Repository
-@SuppressWarnings("unchecked")
-public abstract class DaoClass<T> implements DaoBase<T> {
 
-	private Class<T> entityClass;
-
-	public void setClass(Class<T> entityClass) {
-		this.entityClass = entityClass;
+public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK,T>{
+	
+	private final Class<T> persistentClass;
+	
+	@SuppressWarnings("unchecked")
+	public DaoClass(){
+		this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
 	}
-
+	
 	@Autowired
-	Session session = HibernateConfig.getSessionFactory().getCurrentSession();
+	private SessionFactory sessionFactory;
 
-	@Override
-	public T findById(Long id) {
-		session.beginTransaction();
-		return (T) session.get(this.entityClass, id);
+	protected Session getSession(){
+		return sessionFactory.getCurrentSession();
 	}
 
-	@Override
-	public int create(T entity) {
-		return (int) session.save(entity);
+	@SuppressWarnings("unchecked")
+	public T getByKey(PK key) {
+		return (T) getSession().get(persistentClass, key);
 	}
 
-	@Override
-	public void saveOrUpdate(T entity) {
-		session.saveOrUpdate(entity);
+	public void persist(T entity) {
+		getSession().persist(entity);
 	}
 
-	@Override
 	public void delete(T entity) {
-		session.delete(entity);
+		getSession().delete(entity);
 	}
-
-	@Override
-	public void deleteAll() {
-		List<T> entities = getAll();
-		for (T entity : entities) {
-			session.delete(entity);
-		}
-	}
-
-	@Override
-	public List<T> getAll() {
-		session.beginTransaction();
-		List<T> result = session.createQuery("select * from " + this.entityClass.getName().toLowerCase()).list();
-		session.getTransaction().commit();
-		session.close();
-		return result;
-	}
-
-	@Override
-	public void clear() {
-		session.clear();
-
-	}
-
-	@Override
-	public void flush() {
-		session.flush();
-
+	
+	public Criteria createEntityCriteria(){
+		return getSession().createCriteria(persistentClass);
 	}
 
 }

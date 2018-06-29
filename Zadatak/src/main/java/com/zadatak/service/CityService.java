@@ -1,20 +1,66 @@
 package com.zadatak.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
-import com.zadatak.dao.DaoBase;
+import com.zadatak.daoimpl.CityDao;
 import com.zadatak.domain.City;
 
 @Service
-public class CityService extends ServiceClass<City> {
+public class CityService extends CityDao implements ServiceBase<Long, City> {
 
-	@Autowired
-	static DaoBase<City> dao;
+	@Override
+	public List<City> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-	public void setDao(DaoBase<City> entityClass) {
-		CityService.dao = entityClass;
-		dao.setClass(City.class);
+	public void deleteById(Long id) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public int create(City newInstance) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void update(City transientObject) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public City findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void flush() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void deleteAll() {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void saveOrUpdate(City entity) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

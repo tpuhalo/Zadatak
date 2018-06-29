@@ -36,21 +36,21 @@ public class MainController {
 		return "info/cityInfo";
 	}
 	
-	@RequestMapping(value = "/contact")
+	@RequestMapping(value = "/contact", method=RequestMethod.GET)
 	public String contactList(Model model) {
 		List<Contact> contact = (List<Contact>) contactBase.getAll();
 		model.addAttribute("contact", contact);
 		return "info/contactInfo";
 	}
 
-	@RequestMapping(value = "/address")
+	@RequestMapping(value = "/address", method=RequestMethod.GET)
 	public String addressList(Model model) {
 		List<Address> address = addressBase.getAll();
 		model.addAttribute("address", address);
 		return "info/addressInfo";
 	}
 	
-	@RequestMapping(value = "/country")
+	@RequestMapping(value = "/country", method=RequestMethod.GET)
 	public String countryList(Model model) {
 		List<Country> country = countryBase.getAll();
 		model.addAttribute("country", country);

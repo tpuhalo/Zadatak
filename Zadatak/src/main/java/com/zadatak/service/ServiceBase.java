@@ -1,17 +1,18 @@
 package com.zadatak.service;
 
+import java.io.Serializable;
 import java.util.List;
 /**
  * Service interface for concrete objects
  * 
  */
-public interface ServiceBase<T> {
+public interface ServiceBase<PK extends Serializable, T> {
 
 	public List<T> getAll();
 
 	public int create(T newInstance);
 
-	public void delete(final T object);
+	public void deleteById(Long id);
 
 	public void update(T transientObject);
 
@@ -24,6 +25,5 @@ public interface ServiceBase<T> {
 	void deleteAll();
 
 	void saveOrUpdate(T entity);
-
 
 }
