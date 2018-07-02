@@ -27,7 +27,7 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="contact" modelAttribute="contactInfo" method="GET">
+		<form:form action="contact" modelAttribute="contact" method="POST">
 			<table>
 				<tr>
 					<td><form:label path="firstName" cssClass="clabel">First name: </form:label></td>
@@ -61,23 +61,23 @@ table, th, td {
 						</form:select></td>
 				</tr>
 				<tr>
-					<td><form:label path="addresses.name" cssClass="clabel">Street: </form:label></td>
-					<td><form:input path="addresses.name"
+					<td><form:label path="addresses.street" cssClass="clabel">Street: </form:label></td>
+					<td><form:input path="addresses.street"
 							placeholder="Enter street name" cssClass="ciput" /></td>
-					<td><form:errors path="addresses.name" cssClass="cb"></form:errors></td>
+					<td><form:errors path="addresses.street" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td><form:label path="addresses.streetNumber" cssClass="clabel">Street number: </form:label></td>
 					<td><form:input path="addresses.streetNumber"
 							placeholder="Enter street number" cssClass="ciput" /></td>
-					<td><form:errors path="address.streetNumber" cssClass="cb"></form:errors></td>
+					<td><form:errors path="addresses.streetNumber" cssClass="cb"></form:errors></td>
 				</tr>
 				
 				<tr>
 					<td><form:label path="addresses.city.name" cssClass="clabel">City: </form:label></td>
-					<td><form:input path="addresses.city.city" placeholder="Enter city"
+					<td><form:input path="addresses.city.name" placeholder="Enter city"
 							cssClass="ciput" /></td>
-					<td><form:errors path="addresses.city.city" cssClass="cb"></form:errors></td>
+					<td><form:errors path="addresses.city.name" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td><form:label path="addresses.city.zipCode" cssClass="clabel">Zip code: </form:label></td>
@@ -86,10 +86,10 @@ table, th, td {
 					<td><form:errors path="addresses.city.zipCode" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="addresses.city.country" cssClass="clabel">Country: </form:label></td>
-					<td><form:input path="addresses.city.country" placeholder="Enter country"
+					<td><form:label path="addresses.city.country.name" cssClass="clabel">Country: </form:label></td>
+					<td><form:input path="addresses.city.country.name" placeholder="Enter country"
 							cssClass="ciput" /></td>
-					<td><form:errors path="addresses.city.country" cssClass="cb"></form:errors></td>
+					<td><form:errors path="addresses.city.country.name" cssClass="cb"></form:errors></td>
 				</tr>
 
 

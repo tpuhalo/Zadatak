@@ -5,22 +5,22 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zadatak.domain.Contact;
+import com.zadatak.domain.Address;
+import com.zadatak.domain.Sex;
 
-@Repository("contact")
-@Transactional 
-public class ContactDao extends DaoClass<Long, Contact> {
+@Repository("sex")
+@Transactional
+public class SexDao extends DaoClass<Long, Sex> {
 
-	public ContactDao() {
-		super(Contact.class);
+	public SexDao() {
+		super(Sex.class);
 		// TODO Auto-generated constructor stub
 	}
 
 	public void deleteById(Long id) {
 		Criteria crit = createEntityCriteria();
 		crit.add(Restrictions.eq("id", id));
-		Contact user = (Contact) crit.uniqueResult();
+		Sex user = (Sex) crit.uniqueResult();
 		delete(user);
 	}
-
 }

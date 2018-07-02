@@ -3,8 +3,8 @@ package com.zadatak.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,37 +19,34 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Contact {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Size(max = 20, message = "* Max 20 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "FIRST_NAME")
+	@Column(name="first_name")
 	private String firstName;
 
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "LAST_NAME")
+	@Column(name="last_name")
 	private String lastName;
 
 	@Size(max = 13, message = "* Max 13 characters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "PHONE")
 	private String phone;
 
 	@Email
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "EMAIL")
 	private String email;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-	@JoinColumn(name="ID") 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="sex_id",nullable = false) 
 	private Sex sex;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-	@JoinColumn(name="ID") 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="address_id",nullable = false) 
 	private Address addresses;
 
 

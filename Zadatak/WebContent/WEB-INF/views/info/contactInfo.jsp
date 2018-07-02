@@ -60,7 +60,7 @@ table, th, td {
 					<td><c:out value="${con.phone}" /></td>
 					<td><c:out value="${con.email}" /></td>
 					<td><c:out value="${con.sex.name}" /></td>
-					<td><c:out value="${con.addresses.street + con.addresses.streetNumber}" /></td>
+					<td><c:out value="${con.addresses.street}" /> <c:out value="${con.addresses.streetNumber}" /></td>
 					<td><c:out value="${con.addresses.city.name}" /></td>
 					<td><c:out value="${con.addresses.city.country.name}" /></td>
 					<td><a href="${contextPath}/editContact-${con.id}" style="font-size: 20px">Promijeni</a></td>

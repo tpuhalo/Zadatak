@@ -2,18 +2,23 @@ package com.zadatak.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zadatak.daoimpl.ContactDao;
+import com.zadatak.daoimpl.CountryDao;
 import com.zadatak.domain.Country;
 
-@Service
+@Service("countryBase")
 public class CountryService extends ContactDao implements ServiceBase<Long, Country> {
+
+	@Autowired
+	CountryDao country;
 
 	@Override
 	public List<Country> getAll() {
 		// TODO Auto-generated method stub
-		return null;
+		return country.findAll();
 	}
 
 	@Override

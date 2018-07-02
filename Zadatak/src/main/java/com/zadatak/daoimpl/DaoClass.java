@@ -1,48 +1,60 @@
 package com.zadatak.daoimpl;
 
 import java.io.Serializable;
-
-import java.lang.reflect.ParameterizedType;
+import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import com.zadatak.dao.DaoBase;
 
+public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK, T> {
 
-public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK,T>{
-	
 	private final Class<T> persistentClass;
-	
-	@SuppressWarnings("unchecked")
-	public DaoClass(){
-		this.persistentClass =(Class<T>) ((ParameterizedType) this.getClass().getGenericSuperclass()).getActualTypeArguments()[1];
+
+	public DaoClass(Class<T> entityClass) {
+		this.persistentClass = entityClass;
 	}
-	
+
 	@Autowired
+	@Qualifier("sessionFactory")
 	private SessionFactory sessionFactory;
 
-	protected Session getSession(){
+	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	public T getByKey(PK key) {
 		return (T) getSession().get(persistentClass, key);
 	}
 
+	@Override
 	public void persist(T entity) {
 		getSession().persist(entity);
 	}
 
+	@Override
 	public void delete(T entity) {
 		getSession().delete(entity);
 	}
-	
-	public Criteria createEntityCriteria(){
+
+	@Override
+	public Criteria createEntityCriteria() {
 		return getSession().createCriteria(persistentClass);
+	}
+
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<T> findAll() {
+		List<T> objects = null;
+		objects = getSession().createQuery("from " + persistentClass.getName()).list();
+		return objects;
 	}
 
 }

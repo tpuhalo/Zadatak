@@ -3,12 +3,13 @@ package com.zadatak.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
@@ -18,22 +19,22 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class City {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)	
 	private Long id;
 	
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "NAME")
+	@Column(name="name")
 	private String name;
 	
 	@Size(max = 10, message = "* Max 10 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "ZIP_CODE")
+	@Column(name = "zip_code")
 	private String zipCode;
 	
-	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-	@JoinColumn(name="ID") 
+	@Valid
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="country_id", nullable = false) 
 	private Country country;
 
 	public City() {}

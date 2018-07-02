@@ -2,18 +2,21 @@ package com.zadatak.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zadatak.daoimpl.AddressDao;
 import com.zadatak.domain.Address;
 
-@Service
+@Service("addressBase")
 public class AddressService extends AddressDao implements ServiceBase<Long, Address> {
+
+	@Autowired
+	AddressDao address;
 
 	@Override
 	public List<Address> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return address.findAll();
 	}
 
 	@Override

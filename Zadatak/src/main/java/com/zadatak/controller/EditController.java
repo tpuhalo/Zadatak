@@ -3,6 +3,7 @@ package com.zadatak.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -23,12 +24,16 @@ import com.zadatak.service.CountryService;
 public class EditController {
 
 	@Autowired
+	@Qualifier("cityBase")
 	CityService cityBase;
 	@Autowired
+	@Qualifier("contactBase")
 	ContactService contactBase;
 	@Autowired
+	@Qualifier("addressBase")
 	AddressService addressBase;
 	@Autowired
+	@Qualifier("countryBase")
 	CountryService countryBase;
 
 	@RequestMapping(value = { "/editCity-{id}" }, method = RequestMethod.GET)

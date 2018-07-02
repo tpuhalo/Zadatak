@@ -3,8 +3,8 @@ package com.zadatak.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -18,22 +18,21 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class Address {
 
 	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	@Size(max = 50, message = "* Max 50 letters")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "STREET")
+	@Column(name = "street")
 	private String street;
 
 	@Size(max = 5, message = "* Max 5 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name = "STREET_NO")
+	@Column(name = "street_no")
 	private String streetNumber;
 
-	@ManyToOne(cascade = CascadeType.ALL, fetch= FetchType.LAZY)
-	@JoinColumn(name="ID") 
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "city_id", nullable = false)
 	private City city;
 
 	public Address() {
@@ -82,7 +81,5 @@ public class Address {
 	public String toString() {
 		return "Address [id=" + id + ", street=" + street + ", streetNumber=" + streetNumber + ", city=" + city + "]";
 	}
-
-
 
 }

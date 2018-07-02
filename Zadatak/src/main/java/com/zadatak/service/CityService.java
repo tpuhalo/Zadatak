@@ -2,18 +2,21 @@ package com.zadatak.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zadatak.daoimpl.CityDao;
 import com.zadatak.domain.City;
 
-@Service
-public class CityService extends CityDao implements ServiceBase<Long, City> {
+@Service("cityBase")
+public class CityService extends CityDao implements CityServiceInterface {
 
+	@Autowired
+	CityDao city;
+	
 	@Override
 	public List<City> getAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return city.findAll();
 	}
 
 	public void deleteById(Long id) {

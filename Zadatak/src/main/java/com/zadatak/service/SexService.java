@@ -6,33 +6,35 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zadatak.daoimpl.ContactDao;
-import com.zadatak.domain.Contact;
+import com.zadatak.daoimpl.SexDao;
+import com.zadatak.domain.Sex;
 
-@Service("contactBase")
-public class ContactService extends ContactDao implements ServiceBase<Long, Contact> {
+@Service("sexBase")
+public class SexService extends ContactDao implements ServiceBase<Long, Sex> {
 
 	@Autowired
-	ContactDao contact;
-	
+	SexDao sex;
+
 	@Override
-	public List<Contact> getAll() {
-		return contact.findAll();
+	public List<Sex> getAll() {
+		// TODO Auto-generated method stub
+		return sex.findAll();
 	}
 
 	@Override
-	public int create(Contact newInstance) {
+	public int create(Sex newInstance) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public void update(Contact transientObject) {
+	public void update(Sex transientObject) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public Contact findById(Long id) {
+	public Sex findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -56,7 +58,7 @@ public class ContactService extends ContactDao implements ServiceBase<Long, Cont
 	}
 
 	@Override
-	public void saveOrUpdate(Contact entity) {
+	public void saveOrUpdate(Sex entity) {
 		// TODO Auto-generated method stub
 
 	}
