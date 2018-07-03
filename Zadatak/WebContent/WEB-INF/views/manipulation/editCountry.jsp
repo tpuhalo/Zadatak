@@ -32,20 +32,20 @@ table, th, td {
 			<tr>
 					<td><form:label path="name" cssClass="clabel">Country: </form:label></td>
 					<td><form:input path="name"
-							placeholder="Enter country name" cssClass="ciput" /></td>
-					<td><form:errors path="name" cssClass="cb"></form:errors></td>
+							placeholder="Enter country name" cssClass="ciput" />
+					<form:errors path="name" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td><form:label path="alpha2" cssClass="clabel">Alpha2: </form:label></td>
 					<td><form:input path="alpha2"
-							placeholder="Enter alpha2" cssClass="ciput" /></td>
-					<td><form:errors path="alpha2" cssClass="cb"></form:errors></td>
+							placeholder="Enter alpha2" cssClass="ciput" />
+					<form:errors path="alpha2" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td><form:label path="alpha3" cssClass="clabel">Alpha3: </form:label></td>
 					<td><form:input path="alpha3"
-							placeholder="Enter alpha3" cssClass="ciput" /></td>
-					<td><form:errors path="alpha3" cssClass="cb"></form:errors></td>
+							placeholder="Enter alpha3" cssClass="ciput" />
+					<form:errors path="alpha3" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" value="Submit"></td>

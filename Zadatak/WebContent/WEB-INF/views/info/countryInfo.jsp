@@ -55,7 +55,7 @@ table, th, td {
 					<td><c:out value="${country.alpha3}" /></td>
 					<td><a href="${contextPath}/editCountry-${country.id}"
 						style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/editCountry-${add.id}"
+					<td><a href="${contextPath}/deleteCountry-${country.id}"
 						style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>

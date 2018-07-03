@@ -13,22 +13,10 @@ public class ContactService extends ContactDao implements ServiceBase<Long, Cont
 
 	@Autowired
 	ContactDao contact;
-	
+
 	@Override
 	public List<Contact> getAll() {
 		return contact.findAll();
-	}
-
-	@Override
-	public int create(Contact newInstance) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void update(Contact transientObject) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -57,14 +45,12 @@ public class ContactService extends ContactDao implements ServiceBase<Long, Cont
 
 	@Override
 	public void saveOrUpdate(Contact entity) {
-		// TODO Auto-generated method stub
-
+		contact.SaveOrUpdate(entity);
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-
+		contact.deleteById(id);
 	}
 
 }

@@ -31,25 +31,25 @@ public class DeleteController {
 	@RequestMapping(value = { "/deleteCity-{id}" }, method = RequestMethod.GET)
 	public String deleteCity(@PathVariable Long id) {
 		cityBase.deleteById(id);
-		return "redirect:/cityList";
+		return "redirect:/city";
 	}
 
 	@RequestMapping(value = { "/deleteContact-{id}" }, method = RequestMethod.GET)
 	public String deleteContact(@PathVariable Long id) {
 		contactBase.deleteById(id);
-		return "redirect:/contactList";
+		return "redirect:/contact";
 	}
 
 	@RequestMapping(value = { "/deleteAddress-{id}" }, method = RequestMethod.GET)
 	public String deleteAddress(@PathVariable Long id) {
 		addressBase.deleteById(id);
-		return "redirect:/addressList";
+		return "redirect:/address";
 	}
 
 	@RequestMapping(value = { "/deleteCountry-{id}" }, method = RequestMethod.GET)
 	public String deleteCountry(@PathVariable Long id) {
 		countryBase.deleteById(id);
-		return "redirect:/countryList";
+		return "redirect:/country";
 	}
 
 }

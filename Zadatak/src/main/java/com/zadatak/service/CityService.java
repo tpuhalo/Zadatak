@@ -9,31 +9,18 @@ import com.zadatak.daoimpl.CityDao;
 import com.zadatak.domain.City;
 
 @Service("cityBase")
-public class CityService extends CityDao implements CityServiceInterface {
+public class CityService extends CityDao implements ServiceBase<Long, City> {
 
 	@Autowired
 	CityDao city;
-	
+
 	@Override
 	public List<City> getAll() {
 		return city.findAll();
 	}
 
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int create(City newInstance) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void update(City transientObject) {
-		// TODO Auto-generated method stub
-
+		city.deleteById(id);
 	}
 
 	@Override
@@ -62,8 +49,7 @@ public class CityService extends CityDao implements CityServiceInterface {
 
 	@Override
 	public void saveOrUpdate(City entity) {
-		// TODO Auto-generated method stub
-
+		city.SaveOrUpdate(entity);
 	}
 
 }

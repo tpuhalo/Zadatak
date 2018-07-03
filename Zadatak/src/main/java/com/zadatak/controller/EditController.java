@@ -39,7 +39,7 @@ public class EditController {
 	@RequestMapping(value = { "/editCity-{id}" }, method = RequestMethod.GET)
 	public String editCity(@PathVariable Long id, ModelMap model) {
 		City city = cityBase.findById(id);
-		model.addAttribute("city", city);
+		model.addAttribute("cityInfo", city);
 		return "manipulation/editCity";
 	}
 
@@ -50,7 +50,7 @@ public class EditController {
 			return "manipulation/editCity";
 		}
 
-		cityBase.update(city);
+		cityBase.saveOrUpdate(city);
 
 		model.addAttribute("success", "City " + city.getName() + " edited successfully");
 		String page = "cityInfo";
@@ -61,7 +61,7 @@ public class EditController {
 	@RequestMapping(value = { "/editAddress-{id}" }, method = RequestMethod.GET)
 	public String editAddress(@PathVariable Long id, ModelMap model) {
 		Address address = addressBase.findById(id);
-		model.addAttribute("address", address);
+		model.addAttribute("addressInfo", address);
 		return "manipulation/editAddress";
 	}
 
@@ -72,7 +72,7 @@ public class EditController {
 			return "manipulation/editAddress";
 		}
 
-		addressBase.update(address);
+		addressBase.saveOrUpdate(address);
 
 		model.addAttribute("success",
 				"Address " + address.getStreet() + " " + address.getStreetNumber() + " edited successfully");
@@ -84,7 +84,7 @@ public class EditController {
 	@RequestMapping(value = { "/editContact-{id}" }, method = RequestMethod.GET)
 	public String editContact(@PathVariable Long id, ModelMap model) {
 		Contact contact = contactBase.findById(id);
-		model.addAttribute("contact", contact);
+		model.addAttribute("contactInfo", contact);
 		return "manipulation/editContact";
 	}
 
@@ -95,7 +95,7 @@ public class EditController {
 			return "manipulation/editContact";
 		}
 
-		contactBase.update(contact);
+		contactBase.saveOrUpdate(contact);
 
 		model.addAttribute("success",
 				"Contact " + contact.getFirstName() + " " + contact.getLastName() + " edited successfully");
@@ -108,7 +108,7 @@ public class EditController {
 	@RequestMapping(value = { "/editCountry-{id}" }, method = RequestMethod.GET)
 	public String editCountry(@PathVariable Long id, ModelMap model) {
 		Country country = countryBase.findById(id);
-		model.addAttribute("contact", country);
+		model.addAttribute("countryInfo", country);
 		return "manipulation/editCountry";
 	}
 
@@ -119,7 +119,7 @@ public class EditController {
 			return "manipulation/editCountry";
 		}
 
-		countryBase.update(country);
+		countryBase.saveOrUpdate(country);
 
 		model.addAttribute("success", "Country " + country.getName() + " edited successfully");
 

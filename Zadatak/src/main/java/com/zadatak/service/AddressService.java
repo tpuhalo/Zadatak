@@ -20,18 +20,6 @@ public class AddressService extends AddressDao implements ServiceBase<Long, Addr
 	}
 
 	@Override
-	public int create(Address newInstance) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void update(Address transientObject) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public Address findById(Long id) {
 		// TODO Auto-generated method stub
 		return null;
@@ -57,13 +45,13 @@ public class AddressService extends AddressDao implements ServiceBase<Long, Addr
 
 	@Override
 	public void saveOrUpdate(Address entity) {
-		// TODO Auto-generated method stub
+		address.SaveOrUpdate(entity);
 
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
+		address.deleteById(id);
 
 	}
 

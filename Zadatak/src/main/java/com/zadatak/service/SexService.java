@@ -21,17 +21,7 @@ public class SexService extends ContactDao implements ServiceBase<Long, Sex> {
 		return sex.findAll();
 	}
 
-	@Override
-	public int create(Sex newInstance) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
-	@Override
-	public void update(Sex transientObject) {
-		// TODO Auto-generated method stub
-
-	}
 
 	@Override
 	public Sex findById(Long id) {

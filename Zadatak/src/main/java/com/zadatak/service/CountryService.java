@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.zadatak.daoimpl.CityDao;
 import com.zadatak.daoimpl.ContactDao;
 import com.zadatak.daoimpl.CountryDao;
 import com.zadatak.domain.Country;
@@ -14,23 +15,13 @@ public class CountryService extends ContactDao implements ServiceBase<Long, Coun
 
 	@Autowired
 	CountryDao country;
+	@Autowired
+	CityDao city;
 
 	@Override
 	public List<Country> getAll() {
 		// TODO Auto-generated method stub
 		return country.findAll();
-	}
-
-	@Override
-	public int create(Country newInstance) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public void update(Country transientObject) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
@@ -59,14 +50,14 @@ public class CountryService extends ContactDao implements ServiceBase<Long, Coun
 
 	@Override
 	public void saveOrUpdate(Country entity) {
-		// TODO Auto-generated method stub
+		saveOrUpdate(entity);
 
 	}
 
 	@Override
 	public void deleteById(Long id) {
-		// TODO Auto-generated method stub
-
+		if (!city.findAll().iterator().next().getCountry().getName().equals(country.findAll().iterator().next().getName()))
+		country.deleteById(id);
 	}
 
 }

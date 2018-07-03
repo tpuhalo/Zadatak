@@ -33,13 +33,13 @@ table, th, td {
 					<td><form:label path="name" cssClass="clabel">City: </form:label></td>
 					<td><form:input path="name"
 							placeholder="Enter street name" cssClass="ciput" /></td>
-					<td><form:errors path="name" cssClass="cb"></form:errors></td>
+					<form:errors path="name" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="zipCode" cssClass="clabel">Zip: </form:label></td>
 					<td><form:input path="zipCode"
 							placeholder="Enter zip" cssClass="ciput" /></td>
-					<td><form:errors path="zipCode" cssClass="cb"></form:errors></td>
+					<form:errors path="zipCode" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="country">Country: </form:label></td>

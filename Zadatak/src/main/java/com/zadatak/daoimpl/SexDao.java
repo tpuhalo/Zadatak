@@ -5,7 +5,6 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.zadatak.domain.Address;
 import com.zadatak.domain.Sex;
 
 @Repository("sex")

@@ -34,6 +34,11 @@ public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK
 	}
 
 	@Override
+	public void SaveOrUpdate(T entity) {
+		getSession().save(entity);
+	}
+	
+	@Override
 	public void persist(T entity) {
 		getSession().persist(entity);
 	}

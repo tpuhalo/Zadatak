@@ -17,4 +17,6 @@ public interface DaoBase<PK extends Serializable, T> {
 
 	List<T> findAll();
 
+	void SaveOrUpdate(T entity);
+
 }

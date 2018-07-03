@@ -1,6 +1,5 @@
 package com.zadatak.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,7 +30,7 @@ public class Address {
 	@Column(name = "street_no")
 	private String streetNumber;
 
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne()
 	@JoinColumn(name = "city_id", nullable = false)
 	private City city;
 

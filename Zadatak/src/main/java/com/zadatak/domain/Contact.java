@@ -1,6 +1,5 @@
 package com.zadatak.domain;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -24,12 +23,12 @@ public class Contact {
 
 	@Size(max = 20, message = "* Max 20 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name="first_name")
+	@Column(name = "first_name")
 	private String firstName;
 
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
-	@Column(name="last_name")
+	@Column(name = "last_name")
 	private String lastName;
 
 	@Size(max = 13, message = "* Max 13 characters.")
@@ -40,15 +39,14 @@ public class Contact {
 	@Size(max = 50, message = "* Max 50 letters.")
 	@NotEmpty(message = "* Cannot be empty")
 	private String email;
-	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="sex_id",nullable = false) 
+
+	@ManyToOne()
+	@JoinColumn(name = "sex_id", nullable = false)
 	private Sex sex;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="address_id",nullable = false) 
+	@ManyToOne()
+	@JoinColumn(name = "address_id", nullable = false)
 	private Address addresses;
-
 
 	public Contact() {
 	}
@@ -103,7 +101,6 @@ public class Contact {
 		this.email = email;
 	}
 
-
 	public Sex getSex() {
 		return sex;
 	}
@@ -125,7 +122,5 @@ public class Contact {
 		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone
 				+ ", email=" + email + ", sex=" + sex + ", addresses=" + addresses + "]";
 	}
-
-	
 
 }

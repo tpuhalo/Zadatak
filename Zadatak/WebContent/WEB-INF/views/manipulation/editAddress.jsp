@@ -33,12 +33,12 @@ table, th, td {
 					<td><form:label path="street" cssClass="clabel">Street: </form:label></td>
 					<td><form:input path="street" placeholder="Enter street name"
 							cssClass="ciput" ></form:input></td>
-					<td><form:errors path="street" cssClass="cb"></form:errors></td>
+					<form:errors path="street" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="streetNumber" cssClass="clabel">Street number: </form:label></td>
 					<td><form:input path="streetNumber" placeholder="Enter street number" cssClass="ciput" ></form:input> </td>
-					<td><form:errors path="streetNumber" cssClass="cb"></form:errors></td>
+					<form:errors path="streetNumber" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="city">city: </form:label></td>

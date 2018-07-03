@@ -41,7 +41,14 @@ public class AddController {
 	@Qualifier("sexBase")
 	SexService sexBase;
 
-	@RequestMapping("/addCity")
+	@RequestMapping(value = { "/addCity" }, method = RequestMethod.GET)
+	public String newCity(ModelMap model) {
+		City city = new City();
+		model.addAttribute("cityInfo", city);
+		return "manipulation/editCity";
+	}
+
+	@RequestMapping(value = { "/addCity" }, method = RequestMethod.POST)
 	public String addCity(@Valid City city, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
@@ -55,7 +62,14 @@ public class AddController {
 		return "manipulation/succes";
 	}
 
-	@RequestMapping("/addAddress")
+	@RequestMapping(value = { "/addAddress" }, method = RequestMethod.GET)
+	public String newAddress(ModelMap model) {
+		Address address = new Address();
+		model.addAttribute("addressInfo", address);
+		return "manipulation/editAddress";
+	}
+
+	@RequestMapping(value = { "/addAddress" }, method = RequestMethod.POST)
 	public String addAddress(@Valid Address address, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
@@ -77,12 +91,13 @@ public class AddController {
 		return "manipulation/editContact";
 	}
 
-	@RequestMapping(value = "/addContact", method = RequestMethod.POST)
+	@RequestMapping(value = { "/addContact" }, method = RequestMethod.POST)
 	public String addContact(@Valid Contact contact, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			return "manipulation/editContact";
 		}
+
 		contactBase.saveOrUpdate(contact);
 		model.addAttribute("success",
 				"Contact " + contact.getFirstName() + " " + contact.getLastName() + " added successfully");
@@ -92,7 +107,14 @@ public class AddController {
 		return "manipulation/succes";
 	}
 
-	@RequestMapping("/addCountry")
+	@RequestMapping(value = { "/addCountry" }, method = RequestMethod.GET)
+	public String newCountry(ModelMap model) {
+		Country country = new Country();
+		model.addAttribute("countryInfo", country);
+		return "manipulation/editCountry";
+	}
+
+	@RequestMapping(value = { "/addCountry" }, method = RequestMethod.POST)
 	public String addCountry(@Valid Country country, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
@@ -109,6 +131,8 @@ public class AddController {
 	@ModelAttribute
 	public void modelAttributeTest1(Model model) {
 		model.addAttribute("sexList", sexBase.getAll());
+		model.addAttribute("cityList", cityBase.getAll());
+		model.addAttribute("countryList", countryBase.getAll());
 	}
 
 }

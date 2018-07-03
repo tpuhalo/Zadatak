@@ -33,25 +33,25 @@ table, th, td {
 					<td><form:label path="firstName" cssClass="clabel">First name: </form:label></td>
 					<td><form:input path="firstName"
 							placeholder="Enter first name" cssClass="ciput" /></td>
-					<td><form:errors path="firstName" cssClass="cb"></form:errors></td>
+					<form:errors path="firstName" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="lastName" cssClass="clabel">Last name: </form:label></td>
 					<td><form:input path="lastName"
 							placeholder="Enter street number" cssClass="ciput" /></td>
-					<td><form:errors path="lastName" cssClass="cb"></form:errors></td>
+					<form:errors path="lastName" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="phone" cssClass="clabel">Phone: </form:label></td>
 					<td><form:input path="phone" placeholder="Enter city"
 							cssClass="ciput" /></td>
-					<td><form:errors path="phone" cssClass="cb"></form:errors></td>
+					<form:errors path="phone" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="email" cssClass="clabel">Email: </form:label></td>
 					<td><form:input path="email" placeholder="Enter city"
 							cssClass="ciput" /></td>
-					<td><form:errors path="email" cssClass="cb"></form:errors></td>
+					<form:errors path="email" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="sex">Sex: </form:label></td>
@@ -64,32 +64,33 @@ table, th, td {
 					<td><form:label path="addresses.street" cssClass="clabel">Street: </form:label></td>
 					<td><form:input path="addresses.street"
 							placeholder="Enter street name" cssClass="ciput" /></td>
-					<td><form:errors path="addresses.street" cssClass="cb"></form:errors></td>
+					<form:errors path="addresses.street" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="addresses.streetNumber" cssClass="clabel">Street number: </form:label></td>
 					<td><form:input path="addresses.streetNumber"
 							placeholder="Enter street number" cssClass="ciput" /></td>
-					<td><form:errors path="addresses.streetNumber" cssClass="cb"></form:errors></td>
+					<form:errors path="addresses.streetNumber" cssClass="cb"></form:errors>
 				</tr>
 				
 				<tr>
 					<td><form:label path="addresses.city.name" cssClass="clabel">City: </form:label></td>
 					<td><form:input path="addresses.city.name" placeholder="Enter city"
 							cssClass="ciput" /></td>
-					<td><form:errors path="addresses.city.name" cssClass="cb"></form:errors></td>
+					<form:errors path="addresses.city.name" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="addresses.city.zipCode" cssClass="clabel">Zip code: </form:label></td>
 					<td><form:input path="addresses.city.zipCode" placeholder="Enter zipCode"
 							cssClass="ciput" /></td>
-					<td><form:errors path="addresses.city.zipCode" cssClass="cb"></form:errors></td>
+					<form:errors path="addresses.city.zipCode" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="addresses.city.country.name" cssClass="clabel">Country: </form:label></td>
-					<td><form:input path="addresses.city.country.name" placeholder="Enter country"
-							cssClass="ciput" /></td>
-					<td><form:errors path="addresses.city.country.name" cssClass="cb"></form:errors></td>
+							<td><form:select path="addresses.city.country.name">
+							<form:option value="NONE">---SELECT---</form:option>
+							<form:options items="${countryList }" />
+						</form:select></td>
 				</tr>
 
 
