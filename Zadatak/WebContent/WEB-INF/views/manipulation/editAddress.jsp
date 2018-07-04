@@ -27,25 +27,29 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="address" modelAttribute="addressInfo" method="GET">
+		<form:form action="address" modelAttribute="addressInfo" method="POST">
 			<table>
 				<tr>
 					<td><form:label path="street" cssClass="clabel">Street: </form:label></td>
 					<td><form:input path="street" placeholder="Enter street name"
-							cssClass="ciput" ></form:input></td>
+							cssClass="ciput"></form:input></td>
 					<form:errors path="street" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
 					<td><form:label path="streetNumber" cssClass="clabel">Street number: </form:label></td>
-					<td><form:input path="streetNumber" placeholder="Enter street number" cssClass="ciput" ></form:input> </td>
+					<td><form:input path="streetNumber"
+							placeholder="Enter street number" cssClass="ciput"></form:input>
+					</td>
 					<form:errors path="streetNumber" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
-					<td><form:label path="city">city: </form:label></td>
-					<td><form:select path="city">
-							<form:option value="NONE">---SELECT---</form:option>
-							<form:options items="${cityList }" />
-						</form:select></td>
+					<td>City:</td>
+					<td><select name="city">
+							<c:forEach items="${cityList}" var="city">
+								<option value="${city.id}">${city.name} ${city.zipCode}, ${city.country.name}
+									</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" value="Submit"></td>

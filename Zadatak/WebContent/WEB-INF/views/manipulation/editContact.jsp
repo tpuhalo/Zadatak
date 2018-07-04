@@ -27,70 +27,46 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="contact" modelAttribute="contact" method="POST">
+		<form:form action="saveContact" modelAttribute="contact" method="POST">
 			<table>
 				<tr>
-					<td><form:label path="firstName" cssClass="clabel">First name: </form:label></td>
-					<td><form:input path="firstName"
-							placeholder="Enter first name" cssClass="ciput" /></td>
-					<form:errors path="firstName" cssClass="cb"></form:errors>
+					<td>First Name:</td>
+					<td><form:input path="firstName" /></td>
+					<td><form:errors path="firstName" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="lastName" cssClass="clabel">Last name: </form:label></td>
-					<td><form:input path="lastName"
-							placeholder="Enter street number" cssClass="ciput" /></td>
-					<form:errors path="lastName" cssClass="cb"></form:errors>
+					<td>Last Name:</td>
+					<td><form:input path="lastName" /></td>
+					<td><form:errors path="lastName" /></td>
+				</tr>
+
+				<tr>
+					<td>Telephone:</td>
+					<td><form:input path="phone" /></td>
+					<td><form:errors path="phone" /></td>
 				</tr>
 				<tr>
-					<td><form:label path="phone" cssClass="clabel">Phone: </form:label></td>
-					<td><form:input path="phone" placeholder="Enter city"
-							cssClass="ciput" /></td>
-					<form:errors path="phone" cssClass="cb"></form:errors>
-				</tr>
-				<tr>
-					<td><form:label path="email" cssClass="clabel">Email: </form:label></td>
-					<td><form:input path="email" placeholder="Enter city"
-							cssClass="ciput" /></td>
-					<form:errors path="email" cssClass="cb"></form:errors>
+					<td>Email:</td>
+					<td><form:input path="email" /></td>
+					<td><form:errors path="email" /></td>
 				</tr>
 				<tr>
 					<td><form:label path="sex">Sex: </form:label></td>
 					<td><form:select path="sex">
-							<form:option value="NONE">---SELECT---</form:option>
-							<form:options items="${sexList }" />
+							<c:forEach items="${sexList}" var="sex">
+								<option value="${sex.id}">${sex.name}</option>
+							</c:forEach>
 						</form:select></td>
 				</tr>
 				<tr>
-					<td><form:label path="addresses.street" cssClass="clabel">Street: </form:label></td>
-					<td><form:input path="addresses.street"
-							placeholder="Enter street name" cssClass="ciput" /></td>
-					<form:errors path="addresses.street" cssClass="cb"></form:errors>
-				</tr>
-				<tr>
-					<td><form:label path="addresses.streetNumber" cssClass="clabel">Street number: </form:label></td>
-					<td><form:input path="addresses.streetNumber"
-							placeholder="Enter street number" cssClass="ciput" /></td>
-					<form:errors path="addresses.streetNumber" cssClass="cb"></form:errors>
-				</tr>
-				
-				<tr>
-					<td><form:label path="addresses.city.name" cssClass="clabel">City: </form:label></td>
-					<td><form:input path="addresses.city.name" placeholder="Enter city"
-							cssClass="ciput" /></td>
-					<form:errors path="addresses.city.name" cssClass="cb"></form:errors>
-				</tr>
-				<tr>
-					<td><form:label path="addresses.city.zipCode" cssClass="clabel">Zip code: </form:label></td>
-					<td><form:input path="addresses.city.zipCode" placeholder="Enter zipCode"
-							cssClass="ciput" /></td>
-					<form:errors path="addresses.city.zipCode" cssClass="cb"></form:errors>
-				</tr>
-				<tr>
-					<td><form:label path="addresses.city.country.name" cssClass="clabel">Country: </form:label></td>
-							<td><form:select path="addresses.city.country.name">
-							<form:option value="NONE">---SELECT---</form:option>
-							<form:options items="${countryList }" />
-						</form:select></td>
+					<td>Address:</td>
+					<td><select name="addresses">
+							<c:forEach items="${addressList}" var="address">
+								<option value="${address.id}">${address.street}
+									${address.streetNumber}, ${address.city.name},
+									${address.city.country.name}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 
 

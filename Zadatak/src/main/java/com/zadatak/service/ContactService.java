@@ -44,8 +44,9 @@ public class ContactService extends ContactDao implements ServiceBase<Long, Cont
 	}
 
 	@Override
-	public void saveOrUpdate(Contact entity) {
-		contact.SaveOrUpdate(entity);
+	public String saveOrUpdate(Contact entity) {
+		String error = saveOrUpdate(entity);
+		return error;
 	}
 
 	@Override

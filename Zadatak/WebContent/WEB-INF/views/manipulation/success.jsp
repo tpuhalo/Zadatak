@@ -9,13 +9,24 @@
 <title>Successfull</title>
 </head>
 <body>
-	<div class="generic-container">
-		<div class="alert alert-success lead">${success}</div>
+	<c:if test="${ error} != null">
+		<div class="generic-container">
+			<div class="alert alert-success lead"></div>
 
-		<span class="well floatRight"> 
-		Go to <a href="<c:url value='/${goto }' />">list</a>
-		</span>
-	</div>
+			<span class="well floatRight"> Go to <a
+				href="<c:url value='/${goto }' />">list</a>
+			</span>
+		</div>
+	</c:if>
+	<c:otherwise>
+		<div class="generic-container">
+			<div class="alert alert-success lead">${success}</div>
+
+			<span class="well floatRight"> Go to <a
+				href="<c:url value='/${goto }' />">list</a>
+			</span>
+		</div>
+	</c:otherwise>
 </body>
 
 </html>

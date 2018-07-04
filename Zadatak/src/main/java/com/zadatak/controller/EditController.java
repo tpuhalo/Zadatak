@@ -36,7 +36,7 @@ public class EditController {
 	@Qualifier("countryBase")
 	CountryService countryBase;
 
-	@RequestMapping(value = { "/editCity-{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/editCity-{id}", method = RequestMethod.GET)
 	public String editCity(@PathVariable Long id, ModelMap model) {
 		City city = cityBase.findById(id);
 		model.addAttribute("cityInfo", city);
@@ -58,14 +58,14 @@ public class EditController {
 		return "manipulation/succes";
 	}
 
-	@RequestMapping(value = { "/editAddress-{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/editAddress-{id}", method = RequestMethod.GET)
 	public String editAddress(@PathVariable Long id, ModelMap model) {
 		Address address = addressBase.findById(id);
 		model.addAttribute("addressInfo", address);
 		return "manipulation/editAddress";
 	}
 
-	@RequestMapping(value = { "/editAddress-{id}" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/editAddress-{id}", method = RequestMethod.POST)
 	public String updateAddress(@Valid Address address, BindingResult result, ModelMap model, @PathVariable Long id) {
 
 		if (result.hasErrors()) {
@@ -81,14 +81,14 @@ public class EditController {
 		return "manipulation/succes";
 	}
 
-	@RequestMapping(value = { "/editContact-{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/editContact-{id}", method = RequestMethod.GET)
 	public String editContact(@PathVariable Long id, ModelMap model) {
 		Contact contact = contactBase.findById(id);
 		model.addAttribute("contactInfo", contact);
 		return "manipulation/editContact";
 	}
 
-	@RequestMapping(value = { "/editContact-{id}" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/editContact-{id}", method = RequestMethod.POST)
 	public String updateContact(@Valid Contact contact, BindingResult result, ModelMap model, @PathVariable Long id) {
 
 		if (result.hasErrors()) {
@@ -105,14 +105,14 @@ public class EditController {
 		return "manipulation/succes";
 	}
 
-	@RequestMapping(value = { "/editCountry-{id}" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/editCountry-{id}", method = RequestMethod.GET)
 	public String editCountry(@PathVariable Long id, ModelMap model) {
 		Country country = countryBase.findById(id);
 		model.addAttribute("countryInfo", country);
 		return "manipulation/editCountry";
 	}
 
-	@RequestMapping(value = { "/editCountry-{id}" }, method = RequestMethod.POST)
+	@RequestMapping(value = "/editCountry-{id}", method = RequestMethod.POST)
 	public String updateCountry(@Valid Country country, BindingResult result, ModelMap model, @PathVariable Long id) {
 
 		if (result.hasErrors()) {

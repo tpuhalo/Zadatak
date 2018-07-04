@@ -39,7 +39,7 @@ table, th, td {
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Kontakti <br /> <a href="${contextPath}/addContact" style="font-size: 20px">
+				Kontakti <br /> <a href="addContact" style="font-size: 20px">
 					Dodaj kontakt</a>
 			</caption>
 

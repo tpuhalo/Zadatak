@@ -27,7 +27,7 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="city" modelAttribute="cityInfo" method="GET">
+		<form:form action="city" modelAttribute="cityInfo" method="POST">
 			<table>
 				<tr>
 					<td><form:label path="name" cssClass="clabel">City: </form:label></td>
@@ -42,11 +42,13 @@ table, th, td {
 					<form:errors path="zipCode" cssClass="cb"></form:errors>
 				</tr>
 				<tr>
-					<td><form:label path="country">Country: </form:label></td>
-					<td><form:select path="country">
-							<form:option value="NONE">---SELECT---</form:option>
-							<form:options items="${countryList }" />
-						</form:select></td>
+					<td>Country:</td>
+					<td><select name="country">
+							<c:forEach items="${countryList}" var="country">
+								<option value="${country.id}">${country.name}
+									${country.alpha2}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" value="Submit"></td>

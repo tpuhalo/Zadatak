@@ -41,12 +41,17 @@ public class Contact {
 	private String email;
 
 	@ManyToOne()
-	@JoinColumn(name = "sex_id", nullable = false)
+	@JoinColumn(name = "sex_id", nullable = false, insertable = false, updatable = false)
 	private Sex sex;
 
 	@ManyToOne()
-	@JoinColumn(name = "address_id", nullable = false)
+	@JoinColumn(name = "address_id", nullable = false, insertable = false, updatable = false)
 	private Address addresses;
+
+	@Column(name = "sex_id", insertable = false, updatable = false)
+	private long sexID;
+	@Column(name = "address_id", insertable = false, updatable = false)
+	private long addressID;
 
 	public Contact() {
 	}
@@ -115,6 +120,22 @@ public class Contact {
 
 	public void setAddresses(Address addresses) {
 		this.addresses = addresses;
+	}
+
+	public long getSexID() {
+		return sexID;
+	}
+
+	public void setSexID(long sexID) {
+		this.sexID = sexID;
+	}
+
+	public long getAddressID() {
+		return addressID;
+	}
+
+	public void setAddressID(long addressID) {
+		this.addressID = addressID;
 	}
 
 	@Override

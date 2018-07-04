@@ -21,6 +21,6 @@ public interface ServiceBase<PK extends Serializable, T> {
 
 	void deleteAll();
 
-	void saveOrUpdate(T entity);
+	String saveOrUpdate(T entity);
 
 }

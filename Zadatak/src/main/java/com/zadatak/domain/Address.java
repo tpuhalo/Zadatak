@@ -34,6 +34,9 @@ public class Address {
 	@JoinColumn(name = "city_id", nullable = false)
 	private City city;
 
+	@Column(name = "city_id", insertable = false, updatable = false)
+	private long cityID;
+
 	public Address() {
 	}
 
@@ -74,6 +77,14 @@ public class Address {
 
 	public void setCity(City city) {
 		this.city = city;
+	}
+
+	public long getCityID() {
+		return cityID;
+	}
+
+	public void setCityID(long cityID) {
+		this.cityID = cityID;
 	}
 
 	@Override

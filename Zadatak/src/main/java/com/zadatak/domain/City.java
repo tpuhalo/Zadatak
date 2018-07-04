@@ -38,6 +38,9 @@ public class City {
 	@JoinColumn(name = "country_id", nullable = false)
 	private Country country;
 
+	@Column(name="country_id",insertable=false, updatable=false)
+	private long countryID;
+	
 	public City() {
 	}
 
@@ -78,6 +81,14 @@ public class City {
 
 	public void setCountry(Country country) {
 		this.country = country;
+	}
+
+	public long getCountryID() {
+		return countryID;
+	}
+
+	public void setCountryID(long countryID) {
+		this.countryID = countryID;
 	}
 
 	@Override

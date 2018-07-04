@@ -1,5 +1,8 @@
 package com.zadatak.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +25,7 @@ import com.zadatak.service.ContactService;
 import com.zadatak.service.CountryService;
 import com.zadatak.service.SexService;
 
+
 @Controller
 public class AddController {
 
@@ -41,7 +45,7 @@ public class AddController {
 	@Qualifier("sexBase")
 	SexService sexBase;
 
-	@RequestMapping(value = { "/addCity" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/addCity", method = RequestMethod.GET)
 	public String newCity(ModelMap model) {
 		City city = new City();
 		model.addAttribute("cityInfo", city);
@@ -59,7 +63,7 @@ public class AddController {
 
 		String page = "cityInfo";
 		model.addAttribute("goto", page);
-		return "manipulation/succes";
+		return "redirect:/manipulation/succes";
 	}
 
 	@RequestMapping(value = { "/addAddress" }, method = RequestMethod.GET)
@@ -81,30 +85,48 @@ public class AddController {
 
 		String page = "addressInfo";
 		model.addAttribute("goto", page);
-		return "manipulation/succes";
+		return "redirect:/manipulation/succes";
 	}
 
-	@RequestMapping(value = { "/addContact" }, method = RequestMethod.GET)
-	public String newUser(ModelMap model) {
+	@RequestMapping(value = "/addContact", method = RequestMethod.GET)
+	public String newContact(ModelMap model) {
 		Contact contact = new Contact();
-		model.addAttribute("contact", contact);
+		model.addAttribute("contactInfo", contact);
 		return "manipulation/editContact";
 	}
 
-	@RequestMapping(value = { "/addContact" }, method = RequestMethod.POST)
-	public String addContact(@Valid Contact contact, BindingResult result, ModelMap model) {
+//	@RequestMapping(value = "/newContact", method = RequestMethod.GET)
+//	public String newContact(Model model) {
+//		ContactEntity contactEntity = new ContactEntity();
+//		List<Address> addresses = addressBookManager.fetchAddresses();
+//		List<Sex> genders = addressBookManager.fetchGenders();
+//		model.addAttribute("addresses", addresses);
+//		model.addAttribute("genders", genders);
+//		model.addAttribute("contactEntity", contactEntity);
+//		return "ContactForm";
+//	}
+
+	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
+	public String addContact(@Valid @ModelAttribute Contact contact, BindingResult result, Model model,
+			HttpServletRequest request) {
 
 		if (result.hasErrors()) {
+			model.addAllAttributes(result.getModel());
 			return "manipulation/editContact";
+		} else {
+			long addressID = Long.parseLong(request.getParameter("addresses"));
+			contact.setAddressID(addressID);
+			long sexID = Long.parseLong(request.getParameter("sex"));
+			contact.setSexID(sexID);
+			String error = contactBase.saveOrUpdate(contact);
+			model.addAttribute("error", error);
+			model.addAttribute("success",
+					"Address " + contact.getFirstName() + " " + contact.getLastName() + " added successfully");
+			String page = "addressInfo";
+			model.addAttribute("goto", page);
+			return "redirect:/manipulation/succes";
 		}
 
-		contactBase.saveOrUpdate(contact);
-		model.addAttribute("success",
-				"Contact " + contact.getFirstName() + " " + contact.getLastName() + " added successfully");
-
-		String page = "contactInfo";
-		model.addAttribute("goto", page);
-		return "manipulation/succes";
 	}
 
 	@RequestMapping(value = { "/addCountry" }, method = RequestMethod.GET)
@@ -125,12 +147,13 @@ public class AddController {
 
 		String page = "countryInfo";
 		model.addAttribute("goto", page);
-		return "manipulation/succes";
+		return "redirect:/manipulation/succes";
 	}
 
 	@ModelAttribute
 	public void modelAttributeTest1(Model model) {
 		model.addAttribute("sexList", sexBase.getAll());
+		model.addAttribute("addressList", addressBase.getAll());
 		model.addAttribute("cityList", cityBase.getAll());
 		model.addAttribute("countryList", countryBase.getAll());
 	}
