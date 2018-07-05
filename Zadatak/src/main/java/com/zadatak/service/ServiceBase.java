@@ -1,26 +1,40 @@
 package com.zadatak.service;
 
-import java.io.Serializable;
 import java.util.List;
+
+import com.zadatak.domain.Address;
+import com.zadatak.domain.City;
+import com.zadatak.domain.Contact;
+import com.zadatak.domain.Country;
+import com.zadatak.domain.Sex;
 
 /**
  * Service interface for concrete objects
  * 
  */
-public interface ServiceBase<PK extends Serializable, T> {
+public interface ServiceBase {
 
-	public List<T> getAll();
+	List<Contact> getContacts();
 
-	public void deleteById(Long id);
+	List<Address> getAddresses();
 
-	public T findById(Long id);
+	List<City> getCities();
 
-	void flush();
+	List<Sex> getSexs();
 
-	void clear();
+	List<Country> getCountry();
 
-	void deleteAll();
+	String saveNewOrUpdatedContact(Contact contact, Long sexID, Long AddressID);
 
-	String saveOrUpdate(T entity);
+	String saveNewOrUpdatedAddress(Address address, Long cityID);
+
+	void deleteContact(long contactId);
+
+	String deleteAddress(long addressId);
+
+	Contact prepareContact(long contactId);
+
+	Address prepareAddress(long addressId);
+
 
 }

@@ -13,7 +13,6 @@ public class CityDao extends DaoClass<Long, City> {
 
 	public CityDao() {
 		super(City.class);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void deleteById(Long id) {
@@ -22,4 +21,5 @@ public class CityDao extends DaoClass<Long, City> {
 		City user = (City) crit.uniqueResult();
 		delete(user);
 	}
+
 }

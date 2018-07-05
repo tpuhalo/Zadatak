@@ -22,4 +22,5 @@ public class AddressDao extends DaoClass<Long, Address> {
 		Address user = (Address) crit.uniqueResult();
 		delete(user);
 	}
+
 }

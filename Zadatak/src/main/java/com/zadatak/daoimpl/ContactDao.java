@@ -7,13 +7,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.zadatak.domain.Contact;
 
-@Repository("contact")
+@Repository("contactDao")
 @Transactional 
 public class ContactDao extends DaoClass<Long, Contact> {
 
 	public ContactDao() {
 		super(Contact.class);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void deleteById(Long id) {

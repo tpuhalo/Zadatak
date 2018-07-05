@@ -27,7 +27,7 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveContact" modelAttribute="contact" method="POST">
+		<form:form action="addContact" modelAttribute="newContact" method="POST">
 			<table>
 				<tr>
 					<td>First Name:</td>
@@ -53,6 +53,7 @@ table, th, td {
 				<tr>
 					<td><form:label path="sex">Sex: </form:label></td>
 					<td><form:select path="sex">
+					 		<option>--NONE--</option>
 							<c:forEach items="${sexList}" var="sex">
 								<option value="${sex.id}">${sex.name}</option>
 							</c:forEach>
@@ -61,6 +62,7 @@ table, th, td {
 				<tr>
 					<td>Address:</td>
 					<td><select name="addresses">
+							<option>--NONE--</option>
 							<c:forEach items="${addressList}" var="address">
 								<option value="${address.id}">${address.street}
 									${address.streetNumber}, ${address.city.name},

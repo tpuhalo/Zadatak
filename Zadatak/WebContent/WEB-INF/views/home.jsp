@@ -18,7 +18,7 @@ h2 {
 	<h2>Adresar</h2>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<div style="text-align: center">
-		<a href="${contextPath}/contact"style="font-size: 20px">Klikni ovdje za ulazak u adresar<br />
+		<a href="${contextPath}/homeView"style="font-size: 20px">Klikni ovdje za ulazak u adresar<br />
 		</a>
 	</div>
 </body>

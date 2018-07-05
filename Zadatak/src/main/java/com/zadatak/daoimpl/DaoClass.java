@@ -18,6 +18,11 @@ public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK
 	public DaoClass(Class<T> entityClass) {
 		this.persistentClass = entityClass;
 	}
+	
+	@Override
+	public Criteria createEntityCriteria() {
+		return getSession().createCriteria(persistentClass);
+	}
 
 	@Autowired
 	@Qualifier("sessionFactory")
@@ -26,33 +31,6 @@ public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK
 	protected Session getSession() {
 		return sessionFactory.getCurrentSession();
 	}
-
-	@Override
-	@SuppressWarnings("unchecked")
-	public T getByKey(PK key) {
-		return (T) getSession().get(persistentClass, key);
-	}
-
-	@Override
-	public void SaveOrUpdate(T entity) {
-		getSession().save(entity);
-	}
-	
-	@Override
-	public void persist(T entity) {
-		getSession().persist(entity);
-	}
-
-	@Override
-	public void delete(T entity) {
-		getSession().delete(entity);
-	}
-
-	@Override
-	public Criteria createEntityCriteria() {
-		return getSession().createCriteria(persistentClass);
-	}
-
 	
 	@Override
 	@SuppressWarnings("unchecked")
@@ -61,5 +39,23 @@ public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK
 		objects = getSession().createQuery("from " + persistentClass.getName()).list();
 		return objects;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	public T getByKey(PK key) {
+		return (T) getSession().get(persistentClass, key);
+	}
+
+	@Override
+	public void SaveOrUpdate(T entity) {
+		getSession().saveOrUpdate(entity);
+	}
+	
+
+	@Override
+	public void delete(T entity) {
+		getSession().delete(entity);
+	}
+
 
 }

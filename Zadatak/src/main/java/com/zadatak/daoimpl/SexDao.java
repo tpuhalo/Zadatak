@@ -13,7 +13,6 @@ public class SexDao extends DaoClass<Long, Sex> {
 
 	public SexDao() {
 		super(Sex.class);
-		// TODO Auto-generated constructor stub
 	}
 
 	public void deleteById(Long id) {
