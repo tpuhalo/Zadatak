@@ -19,6 +19,10 @@ table, th, td {
 	font-size: 20px;
 	border: 1px solid black;
 }
+cb{
+font-size: 10px;
+font-color:red
+}
 </style>
 </head>
 <body>
@@ -27,25 +31,24 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="address" modelAttribute="addressInfo" method="POST">
+		<form:form action="saveAddress" modelAttribute="addressInfo" method="POST">
 			<table>
 				<tr>
-					<td><form:label path="street" cssClass="clabel">Street: </form:label></td>
+					<td>Street: </td>
 					<td><form:input path="street" placeholder="Enter street name"
-							cssClass="ciput"></form:input></td>
-					<form:errors path="street" cssClass="cb"></form:errors>
+							cssClass="ciput"></form:input>
+					<form:errors path="street" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="streetNumber" cssClass="clabel">Street number: </form:label></td>
-					<td><form:input path="streetNumber"
-							placeholder="Enter street number" cssClass="ciput"></form:input>
-					</td>
-					<form:errors path="streetNumber" cssClass="cb"></form:errors>
+					<td>Street number: </td>
+					<td><form:input path="streetNumber" placeholder="Enter street number" cssClass="ciput"></form:input>
+					
+					<form:errors path="streetNumber" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td>City:</td>
-					<td><select name="city">
-							<c:forEach items="${cityList}" var="city">
+					<td><select name="cities">
+							<c:forEach items="${cities}" var="city">
 								<option value="${city.id}">${city.name} ${city.zipCode}, ${city.country.name}
 									</option>
 							</c:forEach>

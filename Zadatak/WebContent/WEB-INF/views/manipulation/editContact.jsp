@@ -17,7 +17,12 @@ table, th, td {
 	padding: 5px;
 	margin: 10px;
 	font-size: 20px;
-	border: 1px solid black;
+	border: 0.2px solid black;
+	
+}
+cb{
+font-size: 10px;
+font-color:red
 }
 </style>
 </head>
@@ -27,34 +32,32 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="addContact" modelAttribute="newContact" method="POST">
+		<form:form action="saveContact" modelAttribute="newContact" method="POST">
 			<table>
 				<tr>
 					<td>First Name:</td>
-					<td><form:input path="firstName" /></td>
-					<td><form:errors path="firstName" /></td>
+					<td><form:input path="firstName" />
+					<form:errors path="firstName" cssClass="cb"/></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><form:input path="lastName" /></td>
-					<td><form:errors path="lastName" /></td>
+					<td><form:input path="lastName" /><form:errors path="lastName" cssClass="cb"/></td>
 				</tr>
 
 				<tr>
 					<td>Telephone:</td>
-					<td><form:input path="phone" /></td>
-					<td><form:errors path="phone" /></td>
+					<td><form:input path="phone" />
+					<form:errors path="phone" cssClass="cb"/></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><form:input path="email" /></td>
-					<td><form:errors path="email" /></td>
+					<td><form:input path="email" />
+					<form:errors path="email" cssClass="cb"/></td>
 				</tr>
 				<tr>
-					<td><form:label path="sex">Sex: </form:label></td>
+					<td>Sex: </td>
 					<td><form:select path="sex">
-					 		<option>--NONE--</option>
-							<c:forEach items="${sexList}" var="sex">
+							<c:forEach items="${sexs}" var="sex">
 								<option value="${sex.id}">${sex.name}</option>
 							</c:forEach>
 						</form:select></td>
@@ -62,8 +65,7 @@ table, th, td {
 				<tr>
 					<td>Address:</td>
 					<td><select name="addresses">
-							<option>--NONE--</option>
-							<c:forEach items="${addressList}" var="address">
+							<c:forEach items="${addresses}" var="address">
 								<option value="${address.id}">${address.street}
 									${address.streetNumber}, ${address.city.name},
 									${address.city.country.name}</option>

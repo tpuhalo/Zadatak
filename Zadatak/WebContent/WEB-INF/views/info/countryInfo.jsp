@@ -38,24 +38,23 @@ table, th, td {
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Grad <br /> <a href="${contextPath}/addCity" style="font-size: 20px">Dodaj
-					grad</a>
+				Drzava <br /> <a href="${contextPath}/addCountry"
+					style="font-size: 20px">Dodaj drzavu</a>
 			</caption>
 
 
 			<tr>
-				<th>Grad</th>
-				<th>Zip</th>
 				<th>Drzava</th>
-
+				<th>ISO Alpha-2 kod</th>
+				<th>ISO Alpha-3 kod</th>
 			</tr>
-			<c:forEach var="city" items="${city}">
+			<c:forEach var="country" items="${country}">
 				<tr>
-					<td><c:out value="${city.name}" /></td>
-					<td><c:out value="${city.zipCode}" /></td>
-					<td><c:out value="${city.country.name}" /></td>
-					<td><a href="${contextPath}/editCity-${city.id}" style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/deleteCity-${city.id}" style="font-size: 20px">Obrisi</a></td>
+					<td><c:out value="${country.name}" /></td>
+					<td><c:out value="${country.alpha2}" /></td>
+					<td><c:out value="${country.alpha3}" /></td>
+					<td><a href="${contextPath}/editCountry?id=${country.id}" style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteCountry?id=${country.id}" style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>
@@ -67,3 +66,4 @@ table, th, td {
 	</div>
 </body>
 </html>
+

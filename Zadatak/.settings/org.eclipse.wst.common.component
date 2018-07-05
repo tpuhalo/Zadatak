@@ -5,8 +5,8 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF/views"/>
-        <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF/lib/info"/>
-        <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF/lib/manipulation"/>
+        <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF/views/info"/>
+        <wb-resource deploy-path="/" source-path="/WebContent/WEB-INF/views/manipulation"/>
         <property name="java-output-path" value="/spring-mvc-java-config/build/classes"/>
         <property name="context-root" value="zadatak"/>
     </wb-module>

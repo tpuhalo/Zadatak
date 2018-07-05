@@ -35,36 +35,27 @@ table, th, td {
 		</table>
 
 	</div>
-
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Kontakti <br /> <a href="addContact" style="font-size: 20px">
-					Dodaj kontakt</a>
+				Grad <br /> <a href="${contextPath}/addCity" style="font-size: 20px">Dodaj
+					grad</a>
 			</caption>
 
+
 			<tr>
-				<th>Ime</th>
-				<th>Prezime</th>
-				<th>Telefon</th>
-				<th>Email</th>
-				<th>Spol</th>
-				<th>Adresa</th>
 				<th>Grad</th>
+				<th>Zip</th>
 				<th>Drzava</th>
+
 			</tr>
-			 			<c:forEach var="con" items="${contact}">
+			<c:forEach var="city" items="${city}">
 				<tr>
-					<td><c:out value="${con.firstName}" /></td>
-					<td><c:out value="${con.lastName}" /></td>
-					<td><c:out value="${con.phone}" /></td>
-					<td><c:out value="${con.email}" /></td>
-					<td><c:out value="${con.sex.name}" /></td>
-					<td><c:out value="${con.addresses.street}" /> <c:out value="${con.addresses.streetNumber}" /></td>
-					<td><c:out value="${con.addresses.city.name}" /></td>
-					<td><c:out value="${con.addresses.city.country.name}" /></td>
-					<td><a href="${contextPath}/editContact-${con.id}" style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/deleteContact-${con.id}" style="font-size: 20px">Obrisi</a></td>
+					<td><c:out value="${city.name}" /></td>
+					<td><c:out value="${city.zipCode}" /></td>
+					<td><c:out value="${city.country.name}" /></td>
+					<td><a href="${contextPath}/editCity?id=${city.id}" style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteCity?id=${city.id}" style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>

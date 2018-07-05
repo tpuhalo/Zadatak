@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
@@ -31,6 +32,7 @@ public class Contact {
 	@Column(name = "last_name")
 	private String lastName;
 
+	@Pattern(regexp = "[0-9]+", message= "* Only numbers.")
 	@Size(max = 13, message = "* Max 13 characters.")
 	@NotEmpty(message = "* Cannot be empty")
 	private String phone;

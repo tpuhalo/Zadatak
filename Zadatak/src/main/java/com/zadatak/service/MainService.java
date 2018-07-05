@@ -2,8 +2,11 @@ package com.zadatak.service;
 
 import java.util.List;
 
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.zadatak.daoimpl.AddressDao;
 import com.zadatak.daoimpl.CityDao;
@@ -17,6 +20,7 @@ import com.zadatak.domain.Country;
 import com.zadatak.domain.Sex;
 
 @Service
+@Transactional
 public class MainService implements ServiceBase {
 
 	@Autowired
@@ -148,20 +152,22 @@ public class MainService implements ServiceBase {
 		contactDAO.deleteById(contactId);
 	}
 
-	@SuppressWarnings("null")
+	@Override
 	public String deleteAddress(long addressId) {
 
 		List<Contact> contacts = contactDAO.findAll();
-		List<Long> contactsHasAddress = null;
-		for (Contact con : contacts) {
-			contactsHasAddress.add(con.getAddressID());
+		boolean check = false;
+		for(Contact contact: contacts) {
+			if(contact.getAddressID() == addressId)
+				check = true;
 		}
-		if (contactsHasAddress.isEmpty()) {
+		
+		if (!check) {
 			addressDAO.deleteById(addressId);
 			return "";
 		} else {
 			Address address = addressDAO.getByKey(addressId);
-			return "Address " + address.getStreet() + " " + address.getStreetNumber() + " already exists.";
+			return "Address " + address.getStreet() + " " + address.getStreetNumber() + " is important.";
 		}
 	}
 
@@ -176,6 +182,24 @@ public class MainService implements ServiceBase {
 	public Address prepareAddress(long addressId) {
 		Address address = addressDAO.getByKey(addressId);
 		return address;
+	}
+
+	public String deleteCity(long cityId) {
+
+		List<Address> addresses = addressDAO.findAll();
+		boolean check = false;
+		for(Address address: addresses) {
+			if(address.getCityID() == cityId)
+				check = true;
+		}
+		
+		if (!check) {
+			cityDAO.deleteById(cityId);
+			return "";
+		} else {
+			City city = cityDAO.getByKey(cityId);
+			return "City " + city.getName() + " is important";
+		}
 	}
 
 }

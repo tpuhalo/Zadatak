@@ -16,7 +16,7 @@ public class Sex {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="NAME")
+	@Column(name="name")
 	private String name;
 
 	public Sex() {}

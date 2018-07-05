@@ -35,25 +35,36 @@ table, th, td {
 		</table>
 
 	</div>
+
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Adrese <br /> <a href="${contextPath}/addAddress" style="font-size: 20px">Dodaj
-					adresu</a>
+				Kontakti <br /> <a href="newContact" style="font-size: 20px">
+					Dodaj kontakt</a>
 			</caption>
 
 			<tr>
-				<th>Ulica</th>
-				<th>Broj</th>
+				<th>Ime</th>
+				<th>Prezime</th>
+				<th>Telefon</th>
+				<th>Email</th>
+				<th>Spol</th>
+				<th>Adresa</th>
 				<th>Grad</th>
+				<th>Drzava</th>
 			</tr>
-			<c:forEach var="add" items="${address}">
+			 			<c:forEach var="con" items="${contact}">
 				<tr>
-					<td><c:out value="${add.street}" /></td>
-					<td><c:out value="${add.streetNumber}" /></td>
-					<td><c:out value="${add.city.name}" /></td>
-					<td><a href="${contextPath}/editAddress-${add.id}" style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/deleteAddress-${add.id}" style="font-size: 20px">Obrisi</a></td>
+					<td><c:out value="${con.firstName}" /></td>
+					<td><c:out value="${con.lastName}" /></td>
+					<td><c:out value="${con.phone}" /></td>
+					<td><c:out value="${con.email}" /></td>
+					<td><c:out value="${con.sex.name}" /></td>
+					<td><c:out value="${con.addresses.street}" /> <c:out value="${con.addresses.streetNumber}" /></td>
+					<td><c:out value="${con.addresses.city.name}" /></td>
+					<td><c:out value="${con.addresses.city.country.name}" /></td>
+					<td><a href="${contextPath}/editContact?id=${con.id}" style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteContact?id=${con.id}" style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>
