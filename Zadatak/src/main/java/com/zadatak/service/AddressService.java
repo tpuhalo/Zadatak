@@ -45,6 +45,7 @@ public class AddressService extends AddressDao implements ServiceBase<Long, Addr
 
 	@Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void saveOrUpdate(Address entity) {
 		address.SaveOrUpdate(entity);
 =======
@@ -52,6 +53,10 @@ public class AddressService extends AddressDao implements ServiceBase<Long, Addr
 		address.SaveOrUpdate(entity);
 		return null;
 >>>>>>> git head fatal new commit
+=======
+	public void saveOrUpdate(Address entity) {
+		address.SaveOrUpdate(entity);
+>>>>>>> 95a346ea9318b7d9bfd78bd20dd538a1febc2151
 
 	}
 

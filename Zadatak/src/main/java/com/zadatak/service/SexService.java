@@ -49,6 +49,7 @@ public class SexService extends ContactDao implements ServiceBase<Long, Sex> {
 
 	@Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void saveOrUpdate(Sex entity) {
 		// TODO Auto-generated method stub
 
@@ -56,6 +57,11 @@ public class SexService extends ContactDao implements ServiceBase<Long, Sex> {
 	public String saveOrUpdate(Sex entity) {
 		return null;
 >>>>>>> git head fatal new commit
+=======
+	public void saveOrUpdate(Sex entity) {
+		// TODO Auto-generated method stub
+
+>>>>>>> 95a346ea9318b7d9bfd78bd20dd538a1febc2151
 	}
 
 	@Override

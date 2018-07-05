@@ -49,6 +49,7 @@ public class CityService extends CityDao implements ServiceBase<Long, City> {
 
 	@Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void saveOrUpdate(City entity) {
 		city.SaveOrUpdate(entity);
 =======
@@ -56,6 +57,10 @@ public class CityService extends CityDao implements ServiceBase<Long, City> {
 		city.SaveOrUpdate(entity);
 		return null;
 >>>>>>> git head fatal new commit
+=======
+	public void saveOrUpdate(City entity) {
+		city.SaveOrUpdate(entity);
+>>>>>>> 95a346ea9318b7d9bfd78bd20dd538a1febc2151
 	}
 
 }

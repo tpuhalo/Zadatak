@@ -50,6 +50,7 @@ public class CountryService extends ContactDao implements ServiceBase<Long, Coun
 
 	@Override
 <<<<<<< HEAD
+<<<<<<< HEAD
 	public void saveOrUpdate(Country entity) {
 		saveOrUpdate(entity);
 =======
@@ -57,6 +58,10 @@ public class CountryService extends ContactDao implements ServiceBase<Long, Coun
 		saveOrUpdate(entity);
 		return null;
 >>>>>>> git head fatal new commit
+=======
+	public void saveOrUpdate(Country entity) {
+		saveOrUpdate(entity);
+>>>>>>> 95a346ea9318b7d9bfd78bd20dd538a1febc2151
 
 	}
 
