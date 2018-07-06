@@ -43,11 +43,11 @@ public class AddressController {
 			return "manipulation/editAddress";
 		} else {
 			long cityID = Long.parseLong(request.getParameter("cities"));
-			String error = mainService.saveNewOrUpdatedAddress(address, cityID);
+			String error = mainService.saveNewOrUpdatedAddress(address);
 			model.addAttribute("success",
 					"Address " + address.getStreet() + " " + address.getStreetNumber() + " saved successfully");
 			request.getSession().setAttribute("error", error);
-			return "manipulation/success";
+			return "redirect:/address";
 		}
 	}
 	
@@ -74,7 +74,7 @@ public class AddressController {
 					"Address " + address.getStreet() + " " + address.getStreetNumber() + " updated successfully");
 			String error = mainService.saveNewOrUpdatedAddress(address, cityID);
 			request.getSession().setAttribute("error", error);
-			return "manipulation/success";
+			return "redirect:/address";
 		}
 
 	}
@@ -85,7 +85,7 @@ public class AddressController {
 		String error = mainService.deleteAddress(addressId);
 		HttpSession session = request.getSession();
 		session.setAttribute("error", error);
-		return "redirect:/manipulation/success";
+		return "redirect:/address";
 	}
 
 }

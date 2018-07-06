@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 public class City {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
 	@Size(max = 50, message = "* Max 50 letters.")
@@ -31,14 +31,11 @@ public class City {
 	@NotEmpty(message = "* Cannot be empty")
 	@Column(name = "zip_code")
 	private String zipCode;
-
+	
 	@Valid
 	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinColumn(name = "country_id", nullable = false)
 	private Country country;
-
-	@Column(name = "country_id", insertable = false, updatable = false)
-	private long countryID;
 
 	public City() {
 	}
@@ -52,10 +49,6 @@ public class City {
 
 	public Long getId() {
 		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -80,14 +73,6 @@ public class City {
 
 	public void setCountry(Country country) {
 		this.country = country;
-	}
-
-	public long getCountryID() {
-		return countryID;
-	}
-
-	public void setCountryID(long countryID) {
-		this.countryID = countryID;
 	}
 
 	@Override

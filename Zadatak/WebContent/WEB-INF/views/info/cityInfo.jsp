@@ -23,7 +23,12 @@ table, th, td {
 	<h2 align="center" style="color: #DF01010">Adresar</h2>
 	<hr />
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
+
+
 	<div align="center">
+
+
 		<table>
 			<tr>
 				<th><a href="${contextPath}/contact" style="font-size: 20px">Kontakti</a></th>
@@ -35,11 +40,15 @@ table, th, td {
 		</table>
 
 	</div>
+	
+		<h3>
+		<span>${error}</span>
+	</h3>
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Grad <br /> <a href="${contextPath}/newCity" style="font-size: 20px">Dodaj
-					grad</a>
+				Grad <br /> <a href="${contextPath}/newCity"
+					style="font-size: 20px">Dodaj grad</a>
 			</caption>
 
 
@@ -54,8 +63,10 @@ table, th, td {
 					<td><c:out value="${city.name}" /></td>
 					<td><c:out value="${city.zipCode}" /></td>
 					<td><c:out value="${city.country.name}" /></td>
-					<td><a href="${contextPath}/editCity?id=${city.id}" style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/deleteCity?id=${city.id}" style="font-size: 20px">Obrisi</a></td>
+					<td><a href="${contextPath}/editCity?id=${city.id}"
+						style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteCity?id=${city.id}"
+						style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>

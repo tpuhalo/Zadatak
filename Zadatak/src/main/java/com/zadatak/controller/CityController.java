@@ -43,11 +43,12 @@ public class CityController {
 			return "manipulation/editCity";
 		} else {
 			long countryID = Long.parseLong(request.getParameter("countries"));
+			System.out.println(countryID+"\n******************************\n***************************\n**********************");
 			String error = mainService.saveNewOrUpdatedCity(city, countryID);
 			model.addAttribute("success",
 					"City " + city.getName() + " saved successfully");
 			request.getSession().setAttribute("error", error);
-			return "manipulation/success";
+			return "redirect:/city";
 		}
 	}
 
@@ -74,7 +75,7 @@ public class CityController {
 					"City " + city.getName() + " updated successfully");
 			String error = mainService.saveNewOrUpdatedCity(city, countryID);
 			request.getSession().setAttribute("error", error);
-			return "manipulation/success";
+			return "redirect:/city";
 		}
 
 	}
@@ -84,8 +85,10 @@ public class CityController {
 		long cityId = Long.parseLong(request.getParameter("id"));
 		String error = mainService.deleteCity(cityId);
 		HttpSession session = request.getSession();
+		model.addAttribute("success",
+				"City deleted successfully");
 		session.setAttribute("error", error);
-		return "redirect:/manipulation/success";
+		return "redirect:/city";
 	}
 
 }

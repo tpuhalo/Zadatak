@@ -35,7 +35,9 @@ table, th, td {
 		</table>
 
 	</div>
-
+	<h3>
+		<span>${error}</span>
+	</h3>
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">

@@ -51,7 +51,7 @@ cb {
 					<td>City:</td>
 					<td><select name="cities">
 							<c:forEach items="${cities}" var="city">
-								<option value="${city.id}">${city.name}${city.zipCode},
+								<option value="${city.id}">${city.name} ${city.zipCode},
 									${city.country.name}</option>
 							</c:forEach>
 					</select></td>

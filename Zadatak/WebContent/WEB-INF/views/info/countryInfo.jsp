@@ -35,6 +35,10 @@ table, th, td {
 		</table>
 
 	</div>
+
+	<h3>
+		<span>${error}</span>
+	</h3>
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
@@ -53,8 +57,10 @@ table, th, td {
 					<td><c:out value="${country.name}" /></td>
 					<td><c:out value="${country.alpha2}" /></td>
 					<td><c:out value="${country.alpha3}" /></td>
-					<td><a href="${contextPath}/editCountry?id=${country.id}" style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/deleteCountry?id=${country.id}" style="font-size: 20px">Obrisi</a></td>
+					<td><a href="${contextPath}/editCountry?id=${country.id}"
+						style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteCountry?id=${country.id}"
+						style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>

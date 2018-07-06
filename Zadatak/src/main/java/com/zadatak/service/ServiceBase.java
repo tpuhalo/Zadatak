@@ -26,8 +26,6 @@ public interface ServiceBase {
 
 	String saveNewOrUpdatedContact(Contact contact, Long sexID, Long AddressID);
 
-	String saveNewOrUpdatedAddress(Address address, Long cityID);
-
 	void deleteContact(long contactId);
 
 	String deleteAddress(long addressId);
@@ -39,6 +37,10 @@ public interface ServiceBase {
 	String saveNewOrUpdatedCity(City city, long countryID);
 
 	String deleteCity(long cityId);
+
+	String deleteCountry(long countryId);
+
+	String saveNewOrUpdatedAddress(Address address);
 
 
 }

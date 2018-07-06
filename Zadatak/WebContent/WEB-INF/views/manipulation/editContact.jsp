@@ -18,11 +18,11 @@ table, th, td {
 	margin: 10px;
 	font-size: 20px;
 	border: 0.2px solid black;
-	
 }
-cb{
-font-size: 10px;
-font-color:red
+
+cb {
+	font-size: 10px;
+	font-color: red
 }
 </style>
 </head>
@@ -32,30 +32,32 @@ font-color:red
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveContact" modelAttribute="newContact" method="POST">
+		<form:form action="saveContact" modelAttribute="newContact"
+			method="POST">
 			<table>
 				<tr>
 					<td>First Name:</td>
-					<td><form:input path="firstName" />
-					<form:errors path="firstName" cssClass="cb"/></td>
+					<td><form:input path="firstName" /> <form:errors
+							path="firstName" cssClass="cb" /></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><form:input path="lastName" /><form:errors path="lastName" cssClass="cb"/></td>
+					<td><form:input path="lastName" />
+						<form:errors path="lastName" cssClass="cb" /></td>
 				</tr>
 
 				<tr>
 					<td>Telephone:</td>
-					<td><form:input path="phone" />
-					<form:errors path="phone" cssClass="cb"/></td>
+					<td><form:input path="phone" /> <form:errors path="phone"
+							cssClass="cb" /></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><form:input path="email" />
-					<form:errors path="email" cssClass="cb"/></td>
+					<td><form:input path="email" /> <form:errors path="email"
+							cssClass="cb" /></td>
 				</tr>
 				<tr>
-					<td>Sex: </td>
+					<td>Sex:</td>
 					<td><form:select path="sex">
 							<c:forEach items="${sexs}" var="sex">
 								<option value="${sex.id}">${sex.name}</option>

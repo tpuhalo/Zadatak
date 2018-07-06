@@ -35,11 +35,15 @@ table, th, td {
 		</table>
 
 	</div>
+
+	<h3>
+		<span>${error}</span>
+	</h3>
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Adrese <br /> <a href="${contextPath}/newAddress" style="font-size: 20px">Dodaj
-					adresu</a>
+				Adrese <br /> <a href="${contextPath}/newAddress"
+					style="font-size: 20px">Dodaj adresu</a>
 			</caption>
 
 			<tr>
@@ -52,8 +56,10 @@ table, th, td {
 					<td><c:out value="${add.street}" /></td>
 					<td><c:out value="${add.streetNumber}" /></td>
 					<td><c:out value="${add.city.name}" /></td>
-					<td><a href="${contextPath}/editAddress?id=${add.id}" style="font-size: 20px">Promijeni</a></td>
-					<td><a href="${contextPath}/deleteAddress?id=${add.id}" style="font-size: 20px">Obrisi</a></td>
+					<td><a href="${contextPath}/editAddress?id=${add.id}"
+						style="font-size: 20px">Promijeni</a></td>
+					<td><a href="${contextPath}/deleteAddress?id=${add.id}"
+						style="font-size: 20px">Obrisi</a></td>
 				</tr>
 			</c:forEach>
 		</table>

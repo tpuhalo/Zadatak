@@ -32,7 +32,7 @@ public class Contact {
 	@Column(name = "last_name")
 	private String lastName;
 
-	@Pattern(regexp = "[0-9]+", message= "* Only numbers.")
+	@Pattern(regexp = "[0-9]+", message = "* Only numbers.")
 	@Size(max = 13, message = "* Max 13 characters.")
 	@NotEmpty(message = "* Cannot be empty")
 	private String phone;
@@ -42,17 +42,18 @@ public class Contact {
 	@NotEmpty(message = "* Cannot be empty")
 	private String email;
 
-	@ManyToOne()
-	@JoinColumn(name = "sex_id", nullable = false, insertable = false, updatable = false)
+	@ManyToOne
+	@JoinColumn(name = "sex_id", insertable = false, updatable = false)
 	private Sex sex;
 
-	@ManyToOne()
-	@JoinColumn(name = "address_id", nullable = false, insertable = false, updatable = false)
-	private Address addresses;
+	@ManyToOne
+	@JoinColumn(name = "address_id", insertable = false, updatable = false)
+	private Address address;
 
-	@Column(name = "sex_id", insertable = false, updatable = false)
+	@Column(name = "sex_id")
 	private long sexID;
-	@Column(name = "address_id", insertable = false, updatable = false)
+	
+	@Column(name = "address_id")
 	private long addressID;
 
 	public Contact() {
@@ -65,7 +66,7 @@ public class Contact {
 		this.phone = phone;
 		this.email = email;
 		this.sex = sex;
-		this.addresses = address;
+		this.address = address;
 	}
 
 	public Long getId() {
@@ -117,11 +118,11 @@ public class Contact {
 	}
 
 	public Address getAddresses() {
-		return addresses;
+		return address;
 	}
 
-	public void setAddresses(Address addresses) {
-		this.addresses = addresses;
+	public void setAddresses(Address address) {
+		this.address = address;
 	}
 
 	public long getSexID() {
@@ -143,28 +144,21 @@ public class Contact {
 	@Override
 	public String toString() {
 		return "Contact [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", phone=" + phone
-				+ ", email=" + email + ", sex=" + sex + ", addresses=" + addresses + "]";
+				+ ", email=" + email + ", sex=" + sex + ", addresses=" + address + "]";
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if(obj == null)
+		if (obj == null)
 			return false;
 		if (!(obj instanceof Contact))
 			return false;
 		Contact object = (Contact) obj;
-		if (!this.getFirstName().equals(object.getFirstName())) {
+		if (!this.getEmail().equals(object.getEmail())) {
 			return false;
-		} else if (!this.getLastName().equals(object.getLastName())) {
-			return false;
-		} else if (!this.getEmail().equals(object.getEmail())) {
-			return false;
-		} else if (!this.getPhone().equals(object.getPhone())) {
-			return false;
-		} else {
+		}  else {
 			return true;
 		}
 	}
-	
-	
+
 }

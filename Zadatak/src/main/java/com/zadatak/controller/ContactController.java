@@ -39,13 +39,13 @@ public class ContactController {
 			model.addAttribute("sexs", mainService.getSexs());
 			return "manipulation/editContact";
 		} else {
-			long addressID = Long.parseLong(request.getParameter("addresses"));
-			long sexID = Long.parseLong(request.getParameter("sexs"));
+			long addressID = Long.parseLong(request.getParameter("address"));
+			long sexID = Long.parseLong(request.getParameter("sex"));
+			
+			System.out.println(""+ addressID+ sexID+"***********************\n**************\n***********");
 			String error = mainService.saveNewOrUpdatedContact(contact, sexID, addressID);
-			model.addAttribute("success",
-					"Address " + contact.getFirstName() + " " + contact.getLastName() + " saved successfully");
 			request.getSession().setAttribute("error", error);
-			return "manipulation/success";
+			return "redirect:/contact";
 		}
 
 	}
@@ -74,10 +74,8 @@ public class ContactController {
 			long addressId = Long.parseLong(request.getParameter("addresses"));
 			long sexID = Long.parseLong(request.getParameter("sexs"));
 			String error = mainService.saveNewOrUpdatedContact(contact, sexID, addressId);
-			model.addAttribute("success",
-					"Address " + contact.getFirstName() + " " + contact.getLastName() + " updated successfully");
 			request.getSession().setAttribute("error", error);
-			return "manipulation/success";
+			return "redirect:/contact";
 		}
 
 	}
@@ -88,6 +86,6 @@ public class ContactController {
 		long contactId = Long.parseLong(request.getParameter("id"));
 
 		mainService.deleteContact(contactId);
-		return "redirect:/";
+		return "redirect:/contact";
 	}
 }
