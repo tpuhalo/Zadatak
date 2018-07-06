@@ -17,7 +17,7 @@ table, th, td {
 	padding: 5px;
 	margin: 10px;
 	font-size: 20px;
-	border: 1px solid black;
+	border: 0.2px solid black;
 }
 
 cb {
@@ -32,37 +32,55 @@ cb {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveEditAddress" modelAttribute="editAddress"
+		<form:form action="saveContact" modelAttribute="newContact"
 			method="POST">
 			<table>
 				<tr>
-					<td>Street:</td>
-					<td><form:input path="street" placeholder="Enter street name"
-							cssClass="ciput"></form:input> <form:errors path="street"
-							cssClass="cb"></form:errors></td>
+					<td>First Name:</td>
+					<td><form:input path="firstName" /> <form:errors
+							path="firstName" cssClass="cb" /></td>
 				</tr>
 				<tr>
-					<td>Street number:</td>
-					<td><form:input path="streetNumber"
-							placeholder="Enter street number" cssClass="ciput"></form:input>
-						<form:errors path="streetNumber" cssClass="cb"></form:errors></td>
+					<td>Last Name:</td>
+					<td><form:input path="lastName" />
+						<form:errors path="lastName" cssClass="cb" /></td>
+				</tr>
+
+				<tr>
+					<td>Telephone:</td>
+					<td><form:input path="phone" /> <form:errors path="phone"
+							cssClass="cb" /></td>
 				</tr>
 				<tr>
-					<td>City:</td>
-					<td><select name="cities">
-							<c:forEach items="${cities}" var="city">
-								<option value="${city.id}">${city.name} ${city.zipCode},
-									${city.country.name}</option>
+					<td>Email:</td>
+					<td><form:input path="email" /> <form:errors path="email"
+							cssClass="cb" /></td>
+				</tr>
+				<tr>
+					<td>Sex:</td>
+					<td><form:select path="sex">
+							<c:forEach items="${sexs}" var="sex">
+								<option value="${sex.id}">${sex.name}</option>
+							</c:forEach>
+						</form:select></td>
+				</tr>
+				<tr>
+					<td>Address:</td>
+					<td><select name="addresses">
+							<c:forEach items="${addresses}" var="address">
+								<option value="${address.id}">${address.street}
+									${address.streetNumber}, ${address.city.name},
+									${address.city.country.name}</option>
 							</c:forEach>
 					</select></td>
 				</tr>
+
+
 				<tr>
 					<td align="center"><input type="submit" value="Submit"></td>
 				</tr>
 			</table>
 		</form:form>
-
-
 	</div>
 	<hr>
 	<div align="right">

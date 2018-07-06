@@ -87,8 +87,6 @@ public class Country {
 		Country object = (Country) obj;
 		if (this.getName().equals(object.getName())) {
 			return false;
-		} else if (this.getAlpha2().equals(object.getAlpha2())) {
-			return false;
 		} else {
 			return true;
 		}

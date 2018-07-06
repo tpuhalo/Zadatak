@@ -32,7 +32,7 @@ cb {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveContact" modelAttribute="newContact"
+		<form:form action="saveEditContact" modelAttribute="editContact"
 			method="POST">
 			<table>
 				<tr>

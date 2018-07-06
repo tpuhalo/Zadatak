@@ -24,8 +24,6 @@ public interface ServiceBase {
 
 	List<Country> getCountry();
 
-	String saveNewOrUpdatedContact(Contact contact, Long sexID, Long AddressID);
-
 	void deleteContact(long contactId);
 
 	String deleteAddress(long addressId);
@@ -34,13 +32,17 @@ public interface ServiceBase {
 
 	Address prepareAddress(long addressId);
 
-	String saveNewOrUpdatedCity(City city, long countryID);
-
 	String deleteCity(long cityId);
 
 	String deleteCountry(long countryId);
 
-	String saveNewOrUpdatedAddress(Address address);
+	String saveNewContact(Contact contact);
+
+	String saveNewAddress(Address address);
+
+	String saveNewCity(City city);
+
+	String saveNewCountry(Country country);
 
 
 }

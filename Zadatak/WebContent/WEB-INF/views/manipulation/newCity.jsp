@@ -27,29 +27,34 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveEditCountry" modelAttribute="editCountry" method="POST">
+		<form:form action="saveCity" method="POST" modelAttribute="cityInfo" >
 			<table>
-			<tr>
-					<td><form:label path="name" cssClass="clabel">Country: </form:label></td>
+				<tr>
+					<td><form:label path="name" cssClass="clabel">City: </form:label></td>
 					<td><form:input path="name"
-							placeholder="Enter country name" cssClass="ciput" />
+							placeholder="Enter street name" cssClass="ciput" />
 					<form:errors path="name" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="alpha2" cssClass="clabel">Alpha2: </form:label></td>
-					<td><form:input path="alpha2"
-							placeholder="Enter alpha2" cssClass="ciput" />
-					<form:errors path="alpha2" cssClass="cb"></form:errors></td>
+					<td><form:label path="zipCode" cssClass="clabel">Zip: </form:label></td>
+					<td><form:input path="zipCode"
+							placeholder="Enter zip" cssClass="ciput" />
+					<form:errors path="zipCode" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="alpha3" cssClass="clabel">Alpha3: </form:label></td>
-					<td><form:input path="alpha3"
-							placeholder="Enter alpha3" cssClass="ciput" />
-					<form:errors path="alpha3" cssClass="cb"></form:errors></td>
+					<td>Country:</td>
+					<td><select name="countries">
+							<c:forEach items="${countries}" var="country">
+								<option value="${country.id}">${country.name}
+									${country.alpha2}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" value="Submit"></td>
 				</tr>
+
+
 			</table>
 		</form:form>
 	</div>

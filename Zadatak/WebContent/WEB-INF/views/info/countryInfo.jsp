@@ -31,22 +31,17 @@ table, th, td {
 				<th><a href="${contextPath}/city" style="font-size: 20px">Gradovi</a></th>
 				<th><a href="${contextPath}/country" style="font-size: 20px">Drzave</a></th>
 			</tr>
-
 		</table>
-
 	</div>
-
 	<h3>
 		<span>${error}</span>
 	</h3>
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Drzava <br /> <a href="${contextPath}/addCountry"
+				Drzava <br /> <a href="${contextPath}/newCountry"
 					style="font-size: 20px">Dodaj drzavu</a>
 			</caption>
-
-
 			<tr>
 				<th>Drzava</th>
 				<th>ISO Alpha-2 kod</th>

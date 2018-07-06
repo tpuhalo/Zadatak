@@ -27,7 +27,7 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveCity" method="POST" modelAttribute="cityInfo" >
+		<form:form action="saveEditCity" method="POST" modelAttribute="editCity" >
 			<table>
 				<tr>
 					<td><form:label path="name" cssClass="clabel">City: </form:label></td>

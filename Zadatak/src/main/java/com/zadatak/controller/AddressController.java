@@ -30,7 +30,7 @@ public class AddressController {
 		Address address = new Address();
 		model.addAttribute("cities", mainService.getCities());
 		model.addAttribute("addressInfo", address);
-		return "manipulation/editAddress";
+		return "manipulation/newAddress";
 	}
 	
 	@RequestMapping(value = "/saveAddress", method = RequestMethod.POST)
@@ -40,12 +40,9 @@ public class AddressController {
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
 			model.addAttribute("cities", mainService.getCities());
-			return "manipulation/editAddress";
+			return "manipulation/newAddress";
 		} else {
-			long cityID = Long.parseLong(request.getParameter("cities"));
-			String error = mainService.saveNewOrUpdatedAddress(address);
-			model.addAttribute("success",
-					"Address " + address.getStreet() + " " + address.getStreetNumber() + " saved successfully");
+			String error = mainService.saveNewAddress(address);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/address";
 		}
@@ -55,13 +52,13 @@ public class AddressController {
 	public String editAddress(HttpServletRequest request, Model model) {
 		long addressId = Long.parseLong(request.getParameter("id"));
 		model.addAttribute("cities", mainService.getCities());
-		model.addAttribute("addressInfo", mainService.prepareAddress(addressId));
+		model.addAttribute("editAddress", mainService.prepareAddress(addressId));
 
 		return "manipulation/editAddress";
 	}
 
 	@RequestMapping(value = "/saveEditAddress", method = RequestMethod.POST)
-	public String saveEditAddress(@Valid @ModelAttribute("addressInfo") Address address, BindingResult result, Model model,
+	public String saveEditAddress(@Valid @ModelAttribute("editAddress") Address address, BindingResult result, Model model,
 			HttpServletRequest request) {
 
 		if (result.hasErrors()) {
@@ -69,10 +66,7 @@ public class AddressController {
 			model.addAttribute("cities", mainService.getCities());
 			return "manipulation/editAddress";
 		} else {
-			long cityID = Long.parseLong(request.getParameter("cities"));
-			model.addAttribute("success",
-					"Address " + address.getStreet() + " " + address.getStreetNumber() + " updated successfully");
-			String error = mainService.saveNewOrUpdatedAddress(address, cityID);
+			String error = mainService.saveUpdatedAddress(address);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/address";
 		}

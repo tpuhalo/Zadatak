@@ -3,6 +3,7 @@ package com.zadatak.domain;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,8 +34,8 @@ public class City {
 	private String zipCode;
 	
 	@Valid
-	@ManyToOne(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
-	@JoinColumn(name = "country_id", nullable = false)
+    @ManyToOne(targetEntity = Country.class, fetch=FetchType.EAGER, cascade={CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+    @JoinColumn(name = "country_id", referencedColumnName = "id")
 	private Country country;
 
 	public City() {

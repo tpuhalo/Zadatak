@@ -26,7 +26,7 @@ public class ContactController {
 		model.addAttribute("addresses", mainService.getAddresses());
 		model.addAttribute("sexs", mainService.getSexs());
 		model.addAttribute("newContact", contact);
-		return "manipulation/editContact";
+		return "manipulation/newContact";
 	}
 	
 	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
@@ -37,13 +37,9 @@ public class ContactController {
 			model.addAllAttributes(result.getModel());
 			model.addAttribute("addresses", mainService.getAddresses());
 			model.addAttribute("sexs", mainService.getSexs());
-			return "manipulation/editContact";
+			return "manipulation/newContact";
 		} else {
-			long addressID = Long.parseLong(request.getParameter("address"));
-			long sexID = Long.parseLong(request.getParameter("sex"));
-			
-			System.out.println(""+ addressID+ sexID+"***********************\n**************\n***********");
-			String error = mainService.saveNewOrUpdatedContact(contact, sexID, addressID);
+			String error = mainService.saveNewContact(contact);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
 		}
@@ -64,16 +60,14 @@ public class ContactController {
 	}
 	
 	@RequestMapping(value = "/saveEditContact", method = RequestMethod.POST)
-	public String saveEditContact(@Valid @ModelAttribute("newContact") Contact contact, BindingResult result, Model model,
+	public String saveEditContact(@Valid @ModelAttribute("editContact") Contact contact, BindingResult result, Model model,
 			HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
 			return "manipulation/editContact";
 		} else {
-			long addressId = Long.parseLong(request.getParameter("addresses"));
-			long sexID = Long.parseLong(request.getParameter("sexs"));
-			String error = mainService.saveNewOrUpdatedContact(contact, sexID, addressId);
+			String error = mainService.saveUpdatedContact(contact);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
 		}

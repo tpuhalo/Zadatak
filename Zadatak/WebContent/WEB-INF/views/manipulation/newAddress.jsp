@@ -19,6 +19,11 @@ table, th, td {
 	font-size: 20px;
 	border: 1px solid black;
 }
+
+cb {
+	font-size: 10px;
+	font-color: red
+}
 </style>
 </head>
 <body>
@@ -27,31 +32,37 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveEditCountry" modelAttribute="editCountry" method="POST">
+		<form:form action="saveAddress" modelAttribute="addressInfo"
+			method="POST">
 			<table>
-			<tr>
-					<td><form:label path="name" cssClass="clabel">Country: </form:label></td>
-					<td><form:input path="name"
-							placeholder="Enter country name" cssClass="ciput" />
-					<form:errors path="name" cssClass="cb"></form:errors></td>
+				<tr>
+					<td>Street:</td>
+					<td><form:input path="street" placeholder="Enter street name"
+							cssClass="ciput"></form:input> <form:errors path="street"
+							cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="alpha2" cssClass="clabel">Alpha2: </form:label></td>
-					<td><form:input path="alpha2"
-							placeholder="Enter alpha2" cssClass="ciput" />
-					<form:errors path="alpha2" cssClass="cb"></form:errors></td>
+					<td>Street number:</td>
+					<td><form:input path="streetNumber"
+							placeholder="Enter street number" cssClass="ciput"></form:input>
+						<form:errors path="streetNumber" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="alpha3" cssClass="clabel">Alpha3: </form:label></td>
-					<td><form:input path="alpha3"
-							placeholder="Enter alpha3" cssClass="ciput" />
-					<form:errors path="alpha3" cssClass="cb"></form:errors></td>
+					<td>City:</td>
+					<td><select name="cities">
+							<c:forEach items="${cities}" var="city">
+								<option value="${city.id}">${city.name} ${city.zipCode},
+									${city.country.name}</option>
+							</c:forEach>
+					</select></td>
 				</tr>
 				<tr>
 					<td align="center"><input type="submit" value="Submit"></td>
 				</tr>
 			</table>
 		</form:form>
+
+
 	</div>
 	<hr>
 	<div align="right">

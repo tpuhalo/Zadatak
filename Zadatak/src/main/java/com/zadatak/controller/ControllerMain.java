@@ -58,7 +58,7 @@ public class ControllerMain {
 		model.addAttribute("error", error);
 		return "info/cityInfo";
 	}
-	
+
 	@RequestMapping(value = "/country", method = RequestMethod.GET)
 	public String countryList(Model model, HttpServletRequest request) throws IOException {
 		List<Country> country = mainService.getCountry();
@@ -69,4 +69,8 @@ public class ControllerMain {
 		return "info/countryInfo";
 	}
 
+	@RequestMapping(method = RequestMethod.GET)
+	public String invalidURL(HttpServletRequest request) {
+		return "redirect:/";
+	}
 }

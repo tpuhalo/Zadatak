@@ -13,9 +13,11 @@ public interface DaoBase<PK extends Serializable, T> {
 	List<T> findAll();
 	
 	public T getByKey(PK key);
-
-	void SaveOrUpdate(T entity);
 	
 	public void delete(T entity);
+
+	void save(T entity);
+
+	void update(T entity);
 
 }
