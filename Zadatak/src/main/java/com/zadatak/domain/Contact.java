@@ -146,4 +146,25 @@ public class Contact {
 				+ ", email=" + email + ", sex=" + sex + ", addresses=" + addresses + "]";
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if(obj == null)
+			return false;
+		if (!(obj instanceof Contact))
+			return false;
+		Contact object = (Contact) obj;
+		if (!this.getFirstName().equals(object.getFirstName())) {
+			return false;
+		} else if (!this.getLastName().equals(object.getLastName())) {
+			return false;
+		} else if (!this.getEmail().equals(object.getEmail())) {
+			return false;
+		} else if (!this.getPhone().equals(object.getPhone())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	
 }

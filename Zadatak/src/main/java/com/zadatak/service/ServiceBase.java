@@ -36,5 +36,9 @@ public interface ServiceBase {
 
 	Address prepareAddress(long addressId);
 
+	String saveNewOrUpdatedCity(City city, long countryID);
+
+	String deleteCity(long cityId);
+
 
 }

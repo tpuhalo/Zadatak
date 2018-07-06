@@ -2,8 +2,6 @@ package com.zadatak.service;
 
 import java.util.List;
 
-
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -148,6 +146,26 @@ public class MainService implements ServiceBase {
 	}
 
 	@Override
+	public String saveNewOrUpdatedCity(City city, long countryID) {
+		String error = "";
+		city.setCountryID(countryID);
+		if (city != null) {
+			boolean check = cityExists(city);
+			if (!check) {
+				cityDAO.SaveOrUpdate(city);
+			} else {
+				error = "This address exist in database.";
+			}
+		}
+		return error;
+	}
+
+	public boolean cityExists(City city) {
+		List<City> cities = cityDAO.findAll();
+		return cities.iterator().next().equals(city);
+	}
+
+	@Override
 	public void deleteContact(long contactId) {
 		contactDAO.deleteById(contactId);
 	}
@@ -157,11 +175,11 @@ public class MainService implements ServiceBase {
 
 		List<Contact> contacts = contactDAO.findAll();
 		boolean check = false;
-		for(Contact contact: contacts) {
-			if(contact.getAddressID() == addressId)
+		for (Contact contact : contacts) {
+			if (contact.getAddressID() == addressId)
 				check = true;
 		}
-		
+
 		if (!check) {
 			addressDAO.deleteById(addressId);
 			return "";
@@ -169,6 +187,30 @@ public class MainService implements ServiceBase {
 			Address address = addressDAO.getByKey(addressId);
 			return "Address " + address.getStreet() + " " + address.getStreetNumber() + " is important.";
 		}
+	}
+
+	@Override
+	public String deleteCity(long cityId) {
+
+		List<Address> addresses = addressDAO.findAll();
+		boolean check = false;
+		for (Address address : addresses) {
+			if (address.getCityID() == cityId)
+				check = true;
+		}
+
+		if (!check) {
+			cityDAO.deleteById(cityId);
+			return "";
+		} else {
+			City city = cityDAO.getByKey(cityId);
+			return "City " + city.getName() + " is important";
+		}
+	}
+
+	public City prepareCity(long cityId) {
+		City city = cityDAO.getByKey(cityId);
+		return city;
 	}
 
 	@Override
@@ -182,24 +224,6 @@ public class MainService implements ServiceBase {
 	public Address prepareAddress(long addressId) {
 		Address address = addressDAO.getByKey(addressId);
 		return address;
-	}
-
-	public String deleteCity(long cityId) {
-
-		List<Address> addresses = addressDAO.findAll();
-		boolean check = false;
-		for(Address address: addresses) {
-			if(address.getCityID() == cityId)
-				check = true;
-		}
-		
-		if (!check) {
-			cityDAO.deleteById(cityId);
-			return "";
-		} else {
-			City city = cityDAO.getByKey(cityId);
-			return "City " + city.getName() + " is important";
-		}
 	}
 
 }

@@ -31,14 +31,6 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		registry.addViewController("/").setViewName("home");
 	}
 
-	// @Bean
-	// public MessageSource messageSource() {
-	// ResourceBundleMessageSource messageSource = new
-	// ResourceBundleMessageSource();
-	// messageSource.setBasename("messages");
-	// return messageSource;
-	// }
-
 	@Override
 	public void configurePathMatch(PathMatchConfigurer matcher) {
 		matcher.setUseRegisteredSuffixPatternMatch(true);

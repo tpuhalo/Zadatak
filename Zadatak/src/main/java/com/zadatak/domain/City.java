@@ -12,7 +12,6 @@ import javax.persistence.Table;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 
-
 import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
@@ -38,9 +37,9 @@ public class City {
 	@JoinColumn(name = "country_id", nullable = false)
 	private Country country;
 
-	@Column(name="country_id",insertable=false, updatable=false)
+	@Column(name = "country_id", insertable = false, updatable = false)
 	private long countryID;
-	
+
 	public City() {
 	}
 
@@ -94,6 +93,20 @@ public class City {
 	@Override
 	public String toString() {
 		return "City [id=" + id + ", name=" + name + ", zipCode=" + zipCode + ", country=" + country + "]";
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof City))
+			return false;
+		City object = (City) obj;
+		if (!this.getName().equals(object.getName())) {
+			return false;
+		} else if (!this.getZipCode().equals(object.getZipCode())) {
+			return false;
+		} else {
+			return true;
+		}
 	}
 
 }

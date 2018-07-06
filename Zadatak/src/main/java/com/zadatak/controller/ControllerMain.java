@@ -58,22 +58,4 @@ public class ControllerMain {
 		return "info/cityInfo";
 	}
 
-	// @RequestMapping(value = "/country", method=RequestMethod.GET)
-	// public String countryList(Model model, HttpServletRequest request) throws
-	// IOException {
-	// List<Country> country = mainService.getAll();
-	// String error = (String) request.getSession().getAttribute("error");
-	// request.getSession().removeAttribute("error");
-	// model.addAttribute("country", country);
-	// model.addAttribute("error", error);
-	// return "info/countryInfo";
-	// }
-	//
-
-	//
-	// @RequestMapping(method = RequestMethod.GET)
-	// public String invalidURL(HttpServletRequest request) {
-	// return "redirect:/";
-	// }
-
 }

@@ -27,24 +27,24 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="city" modelAttribute="cityInfo" method="POST">
+		<form:form action="saveCity" method="POST" modelAttribute="cityInfo" >
 			<table>
 				<tr>
 					<td><form:label path="name" cssClass="clabel">City: </form:label></td>
 					<td><form:input path="name"
-							placeholder="Enter street name" cssClass="ciput" /></td>
-					<form:errors path="name" cssClass="cb"></form:errors>
+							placeholder="Enter street name" cssClass="ciput" />
+					<form:errors path="name" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td><form:label path="zipCode" cssClass="clabel">Zip: </form:label></td>
 					<td><form:input path="zipCode"
-							placeholder="Enter zip" cssClass="ciput" /></td>
-					<form:errors path="zipCode" cssClass="cb"></form:errors>
+							placeholder="Enter zip" cssClass="ciput" />
+					<form:errors path="zipCode" cssClass="cb"></form:errors></td>
 				</tr>
 				<tr>
 					<td>Country:</td>
-					<td><select name="country">
-							<c:forEach items="${countryList}" var="country">
+					<td><select name="countries">
+							<c:forEach items="${countries}" var="country">
 								<option value="${country.id}">${country.name}
 									${country.alpha2}</option>
 							</c:forEach>

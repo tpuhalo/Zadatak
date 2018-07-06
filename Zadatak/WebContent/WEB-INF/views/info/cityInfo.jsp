@@ -38,7 +38,7 @@ table, th, td {
 	<div align="center">
 		<table>
 			<caption style="font-size: 20px; margin-bottom: 10px">
-				Grad <br /> <a href="${contextPath}/addCity" style="font-size: 20px">Dodaj
+				Grad <br /> <a href="${contextPath}/newCity" style="font-size: 20px">Dodaj
 					grad</a>
 			</caption>
 

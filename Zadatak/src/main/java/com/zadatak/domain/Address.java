@@ -92,4 +92,18 @@ public class Address {
 		return "Address [id=" + id + ", street=" + street + ", streetNumber=" + streetNumber + ", city=" + city + "]";
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Address))
+			return false;
+		Address object = (Address) obj;
+		if (!this.getStreet().equals(object.getStreet())) {
+			return false;
+		} else if (!this.getStreetNumber().equals(object.getStreetNumber())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

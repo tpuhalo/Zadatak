@@ -80,6 +80,18 @@ public class Country {
 		return "Country [id=" + id + ", name=" + name + ", alpha2=" + alpha2 + ", alpha3=" + alpha3 + "]";
 	}
 
-
+	@Override
+	public boolean equals(Object obj) {
+		if (!(obj instanceof Country))
+			return false;
+		Country object = (Country) obj;
+		if (this.getName().equals(object.getName())) {
+			return false;
+		} else if (this.getAlpha2().equals(object.getAlpha2())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
 
 }

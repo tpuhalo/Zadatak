@@ -39,8 +39,8 @@ public class ContactController {
 			model.addAttribute("sexs", mainService.getSexs());
 			return "manipulation/editContact";
 		} else {
-			long addressID = Long.parseLong(request.getParameter("address"));
-			long sexID = Long.parseLong(request.getParameter("sex"));
+			long addressID = Long.parseLong(request.getParameter("addresses"));
+			long sexID = Long.parseLong(request.getParameter("sexs"));
 			String error = mainService.saveNewOrUpdatedContact(contact, sexID, addressID);
 			model.addAttribute("success",
 					"Address " + contact.getFirstName() + " " + contact.getLastName() + " saved successfully");
@@ -71,8 +71,8 @@ public class ContactController {
 			model.addAllAttributes(result.getModel());
 			return "manipulation/editContact";
 		} else {
-			long addressId = Long.parseLong(request.getParameter("address"));
-			long sexID = Long.parseLong(request.getParameter("sex"));
+			long addressId = Long.parseLong(request.getParameter("addresses"));
+			long sexID = Long.parseLong(request.getParameter("sexs"));
 			String error = mainService.saveNewOrUpdatedContact(contact, sexID, addressId);
 			model.addAttribute("success",
 					"Address " + contact.getFirstName() + " " + contact.getLastName() + " updated successfully");

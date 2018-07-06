@@ -1,7 +1,5 @@
 package com.zadatak.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zadatak.domain.Address;
-import com.zadatak.domain.City;
 import com.zadatak.service.MainService;
 
 @Controller
@@ -45,7 +42,7 @@ public class AddressController {
 			model.addAttribute("cities", mainService.getCities());
 			return "manipulation/editAddress";
 		} else {
-			long cityID = Long.parseLong(request.getParameter("city"));
+			long cityID = Long.parseLong(request.getParameter("cities"));
 			String error = mainService.saveNewOrUpdatedAddress(address, cityID);
 			model.addAttribute("success",
 					"Address " + address.getStreet() + " " + address.getStreetNumber() + " saved successfully");
@@ -69,11 +66,10 @@ public class AddressController {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
-			List<City> cities = mainService.getCities();
-			model.addAttribute("cities", cities);
+			model.addAttribute("cities", mainService.getCities());
 			return "manipulation/editAddress";
 		} else {
-			long cityID = Long.parseLong(request.getParameter("city"));
+			long cityID = Long.parseLong(request.getParameter("cities"));
 			model.addAttribute("success",
 					"Address " + address.getStreet() + " " + address.getStreetNumber() + " updated successfully");
 			String error = mainService.saveNewOrUpdatedAddress(address, cityID);
@@ -87,16 +83,6 @@ public class AddressController {
 	public String deleteAddress(Model model, HttpServletRequest request) {
 		long addressId = Long.parseLong(request.getParameter("id"));
 		String error = mainService.deleteAddress(addressId);
-		HttpSession session = request.getSession();
-		session.setAttribute("error", error);
-		return "redirect:/manipulation/success";
-	}
-
-	
-	@RequestMapping(value = "/deleteCity", method = RequestMethod.GET)
-	public String deleteCity(Model model, HttpServletRequest request) {
-		long cityId = Long.parseLong(request.getParameter("id"));
-		String error = mainService.deleteCity(cityId);
 		HttpSession session = request.getSession();
 		session.setAttribute("error", error);
 		return "redirect:/manipulation/success";
