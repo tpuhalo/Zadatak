@@ -43,7 +43,7 @@ public class ContactController {
 		} else {
 			long addressID = Long.parseLong(request.getParameter("addresses"));
 			long sexID = Long.parseLong(request.getParameter("sexs"));
-
+			System.out.println(addressID + sexID);
 			String error = mainService.saveNewContact(contact, addressID, sexID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
@@ -55,7 +55,8 @@ public class ContactController {
 	public String editContact(HttpServletRequest request, Model model) {
 		long contactId = Long.parseLong(request.getParameter("id"));
 		Contact contact = mainService.prepareContact(contactId);
-		model.addAttribute("contactId", contactId);
+		HttpSession session = request.getSession();
+		session.setAttribute("contactId", contactId);
 		model.addAttribute("editContact", contact);
 
 		model.addAttribute("addresses", mainService.getAddresses());
@@ -69,7 +70,10 @@ public class ContactController {
 			Model model, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
+			System.out.println(result.getFieldError());
 			model.addAllAttributes(result.getModel());
+			model.addAttribute("addresses", mainService.getAddresses());
+			model.addAttribute("sexs", mainService.getSexs());
 			return "manipulation/editContact";
 		} else {
 			HttpSession session = request.getSession();

@@ -52,7 +52,8 @@ public class CityController {
 	@RequestMapping(value = "/editCity", method = RequestMethod.GET)
 	public String editAddress(HttpServletRequest request, Model model) {
 		long cityId = Long.parseLong(request.getParameter("id"));
-		model.addAttribute("cityId", cityId);
+		HttpSession session = request.getSession();
+		session.setAttribute("cityId", cityId);
 		model.addAttribute("countries", mainService.getCountry());
 		model.addAttribute("editCity", mainService.prepareCity(cityId));
 
@@ -67,11 +68,12 @@ public class CityController {
 			model.addAllAttributes(result.getModel());
 			model.addAttribute("countries", mainService.getCountry());
 			return "manipulation/editAddress";
+
 		} else {
 			HttpSession session = request.getSession();
 			long cityID = (Long) session.getAttribute("cityId");
+			session.removeAttribute("cityId");
 			long countryID = Long.parseLong(request.getParameter("countries"));
-			System.out.println(city.getId());
 			String error = mainService.saveUpdatedCity(city, cityID, countryID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/city";

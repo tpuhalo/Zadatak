@@ -22,12 +22,4 @@ public class CityDao extends DaoClass<Long, City> {
 		delete(city);
 	}
 
-	
-	public void update(City city) {
-	Criteria criteria = createEntityCriteria();
-    criteria.add(Restrictions.eq("id",city.getId()));
-    City cityUpdate = (City) criteria.uniqueResult();
-    update(cityUpdate);
-	
-	}
 }

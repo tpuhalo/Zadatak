@@ -134,7 +134,7 @@ public class Contact {
 		Contact object = (Contact) obj;
 		if (!this.getEmail().equals(object.getEmail())) {
 			return false;
-		}  else {
+		} else {
 			return true;
 		}
 	}

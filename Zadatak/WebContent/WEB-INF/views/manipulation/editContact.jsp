@@ -56,11 +56,11 @@ cb {
 				</tr>
 				<tr>
 					<td>Sex:</td>
-					<td><form:select path="sex">
+					<td><select name="sexs">
 							<c:forEach items="${sexs}" var="sex">
 								<option value="${sex.id}">${sex.name}</option>
 							</c:forEach>
-						</form:select></td>
+						</select></td>
 				</tr>
 				<tr>
 					<td>Address:</td>

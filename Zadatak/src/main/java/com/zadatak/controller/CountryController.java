@@ -47,7 +47,8 @@ public class CountryController {
 	public String editCountry(HttpServletRequest request, Model model) {
 		long countryID = Long.parseLong(request.getParameter("id"));
 		Country country = mainService.prepareCountry(countryID);
-		model.addAttribute("countryId", countryID);
+		HttpSession session = request.getSession();
+		session.setAttribute("countryId", countryID);
 		model.addAttribute("editCountry", country);
 
 		return "manipulation/editCountry";
