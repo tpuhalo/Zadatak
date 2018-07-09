@@ -27,7 +27,7 @@ public class CountryController {
 		model.addAttribute("newCountry", country);
 		return "manipulation/newCountry";
 	}
-	
+
 	@RequestMapping(value = "/saveCountry", method = RequestMethod.POST)
 	public String saveCountry(@Valid @ModelAttribute("newCountry") Country country, BindingResult result, Model model,
 			HttpServletRequest request) {
@@ -42,8 +42,35 @@ public class CountryController {
 		}
 
 	}
-	
-	
+
+	@RequestMapping(value = "/editCountry", method = RequestMethod.GET)
+	public String editCountry(HttpServletRequest request, Model model) {
+		long countryID = Long.parseLong(request.getParameter("id"));
+		Country country = mainService.prepareCountry(countryID);
+		model.addAttribute("countryId", countryID);
+		model.addAttribute("editCountry", country);
+
+		return "manipulation/editCountry";
+	}
+
+	@RequestMapping(value = "/saveEditCountry", method = RequestMethod.POST)
+	public String saveEditCountry(@Valid @ModelAttribute("editCountry") Country country, BindingResult result,
+			Model model, HttpServletRequest request) {
+
+		if (result.hasErrors()) {
+			model.addAllAttributes(result.getModel());
+			return "manipulation/editCountry";
+		} else {
+			HttpSession session = request.getSession();
+			long countryID = (Long) session.getAttribute("countryId");
+			System.out.println(countryID);
+			String error = mainService.saveUpdatedCountry(country, countryID);
+			request.getSession().setAttribute("error", error);
+			return "redirect:/country";
+		}
+
+	}
+
 	@RequestMapping(value = "/deleteCountry", method = RequestMethod.GET)
 	public String deleteCountry(HttpServletRequest request) {
 		long countryId = Long.parseLong(request.getParameter("id"));

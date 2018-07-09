@@ -19,30 +19,50 @@ public interface ServiceBase {
 	List<Address> getAddresses();
 
 	List<City> getCities();
-
-	List<Sex> getSexs();
-
+	
 	List<Country> getCountry();
 
-	void deleteContact(long contactId);
+	List<Sex> getSexs();
+	
+	
+	String saveNewCity(City city, Long countryID);
+
+	String saveNewAddress(Address address, Long cityID);
+
+	String saveNewContact(Contact contact, Long addressID, Long sexID);
+
+	String saveNewCountry(Country country);
+
+
+
+	String deleteContact(long contactId);
 
 	String deleteAddress(long addressId);
-
-	Contact prepareContact(long contactId);
-
-	Address prepareAddress(long addressId);
 
 	String deleteCity(long cityId);
 
 	String deleteCountry(long countryId);
 
-	String saveNewContact(Contact contact);
 
-	String saveNewAddress(Address address);
+	Contact prepareContact(long contactId);
 
-	String saveNewCity(City city);
+	Address prepareAddress(long addressId);
 
-	String saveNewCountry(Country country);
+	Country prepareCountry(long countryID);
+
+	City prepareCity(long cityId);
+	
+	
+
+
+	String saveUpdatedAddress(Address address, Long addressID, Long cityID);
+
+	String saveUpdatedCountry(Country country, Long countryID);
+
+	String saveUpdatedContact(Contact contact, Long contactID, Long addressID, Long sexID);
+
+	String saveUpdatedCity(City city, Long cityID, Long countryID);
+
 
 
 }

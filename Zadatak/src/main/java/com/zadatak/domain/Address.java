@@ -30,10 +30,9 @@ public class Address {
 	@Column(name = "street_no")
 	private String streetNumber;
 
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name = "city_id", nullable = false)
 	private City city;
-
 
 	public Address() {
 	}

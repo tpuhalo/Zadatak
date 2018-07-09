@@ -27,19 +27,17 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 	<div align="center">
-		<form:form action="saveCity" method="POST" modelAttribute="cityInfo" >
+		<form:form action="saveCity" method="POST" modelAttribute="cityInfo">
 			<table>
 				<tr>
-					<td><form:label path="name" cssClass="clabel">City: </form:label></td>
-					<td><form:input path="name"
-							placeholder="Enter street name" cssClass="ciput" />
-					<form:errors path="name" cssClass="cb"></form:errors></td>
+					<td>City:</td>
+					<td><form:input path="name" placeholder="Enter street name" />
+						<form:errors path="name"></form:errors></td>
 				</tr>
 				<tr>
-					<td><form:label path="zipCode" cssClass="clabel">Zip: </form:label></td>
-					<td><form:input path="zipCode"
-							placeholder="Enter zip" cssClass="ciput" />
-					<form:errors path="zipCode" cssClass="cb"></form:errors></td>
+					<td>Zip:</td>
+					<td><form:input path="zipCode" placeholder="Enter zip" /> <form:errors
+							path="zipCode"></form:errors></td>
 				</tr>
 				<tr>
 					<td>Country:</td>

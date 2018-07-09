@@ -18,8 +18,16 @@ public class CityDao extends DaoClass<Long, City> {
 	public void deleteById(Long id) {
 		Criteria crit = createEntityCriteria();
 		crit.add(Restrictions.eq("id", id));
-		City user = (City) crit.uniqueResult();
-		delete(user);
+		City city = (City) crit.uniqueResult();
+		delete(city);
 	}
 
+	
+	public void update(City city) {
+	Criteria criteria = createEntityCriteria();
+    criteria.add(Restrictions.eq("id",city.getId()));
+    City cityUpdate = (City) criteria.uniqueResult();
+    update(cityUpdate);
+	
+	}
 }

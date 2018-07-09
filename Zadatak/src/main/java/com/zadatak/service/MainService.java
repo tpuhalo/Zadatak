@@ -66,11 +66,15 @@ public class MainService implements ServiceBase {
 	}
 
 	@Override
-	public String saveNewContact(Contact contact) {
+	public String saveNewContact(Contact contact, Long addressID, Long sexID) {
 		String error = "";
 		if (contact != null) {
 			boolean check = contactExists(contact);
 			if (!check) {
+				Address address = addressDAO.getByKey(addressID);
+				contact.setAddress(address);
+				Sex sex = sexDAO.getByKey(sexID);
+				contact.setSex(sex);
 				contactDAO.save(contact);
 				error = contact.getFirstName() + " " + contact.getLastName() + " added succesfully.";
 			} else {
@@ -82,15 +86,25 @@ public class MainService implements ServiceBase {
 
 	public boolean contactExists(Contact contact) {
 		List<Contact> contacts = contactDAO.findAll();
-		return contacts.iterator().next().equals(contact);
+		boolean check = false;
+		if (contacts == null)
+			return check;
+		else
+			for (Contact contactDatabase : contacts) {
+				if (contact.equals(contactDatabase))
+					check = true;
+			}
+		return check;
 	}
 
 	@Override
-	public String saveNewAddress(Address address) {
+	public String saveNewAddress(Address address, Long cityID) {
 		String error = "";
 		if (address != null) {
 			boolean check = addressExists(address);
 			if (!check) {
+				City city = cityDAO.getByKey(cityID);
+				address.setCity(city);
 				addressDAO.save(address);
 				error = address.getStreet() + " added sucessfully.";
 			} else {
@@ -103,19 +117,24 @@ public class MainService implements ServiceBase {
 	public boolean addressExists(Address address) {
 		List<Address> addresses = addressDAO.findAll();
 		boolean check = false;
-		for (Address addressDatabase : addresses) {
-			if (address.equals(addressDatabase))
-				check = true;
-		}
+		if (addresses == null)
+			return check;
+		else
+			for (Address addressDatabase : addresses) {
+				if (address.equals(addressDatabase))
+					check = true;
+			}
 		return check;
 	}
 
 	@Override
-	public String saveNewCity(City city) {
+	public String saveNewCity(City city, Long countryID) {
 		String error = "";
 		if (city != null) {
 			boolean check = cityExists(city);
 			if (!check) {
+				Country country = countryDAO.getByKey(countryID);
+				city.setCountry(country);
 				cityDAO.save(city);
 				error = city.getName() + " added succesfully.";
 			} else {
@@ -128,33 +147,37 @@ public class MainService implements ServiceBase {
 	public boolean cityExists(City city) {
 		List<City> cities = cityDAO.findAll();
 		boolean check = false;
-		for (City cityDatabase : cities) {
-			if (city.equals(cityDatabase))
-				check = true;
-		}
+		if (cities == null)
+			return false;
+		else
+			for (City cityDatabase : cities) {
+				if (city.equals(cityDatabase))
+					check = true;
+			}
 		return check;
 	}
 
 	@Override
-	public void deleteContact(long contactId) {
+	public String deleteContact(long contactId) {
 		contactDAO.deleteById(contactId);
+		return "Contact deleted.";
 	}
 
 	@Override
-	public String deleteAddress(long addressId) {
+	public String deleteAddress(long addressID) {
 
 		List<Contact> contacts = contactDAO.findAll();
 		boolean check = false;
 		for (Contact contact : contacts) {
-			if (contact.getAddressID() == addressId)
+			if (contact.getAddress() == addressDAO.getByKey(addressID))
 				check = true;
 		}
 
 		if (!check) {
-			addressDAO.deleteById(addressId);
+			addressDAO.deleteById(addressID);
 			return "Address deleted.";
 		} else {
-			Address address = addressDAO.getByKey(addressId);
+			Address address = addressDAO.getByKey(addressID);
 			return "Address " + address.getStreet() + " " + address.getStreetNumber() + " can't be deleted..";
 		}
 	}
@@ -197,6 +220,22 @@ public class MainService implements ServiceBase {
 		}
 	}
 
+	@Override
+	public String saveNewCountry(Country country) {
+		String error = "";
+		if (country != null) {
+			boolean check = countryExists(country);
+			if (check) {
+				countryDAO.save(country);
+				error = country.getName() + " added sucessfully.";
+			} else {
+				error = "This country exist in database.";
+			}
+		}
+		return error;
+	}
+
+	@Override
 	public City prepareCity(long cityId) {
 		City city = cityDAO.getByKey(cityId);
 		return city;
@@ -214,18 +253,8 @@ public class MainService implements ServiceBase {
 	}
 
 	@Override
-	public String saveNewCountry(Country country){
-		String error = "";
-		if (country != null) {
-			boolean check = countryExists(country);
-			if (check) {
-				countryDAO.save(country);
-				error = country.getName() + " added sucessfully.";
-			} else {
-				error = "This country exist in database.";
-			}
-		}
-		return error;
+	public Country prepareCountry(long countryID) {
+		return countryDAO.getByKey(countryID);
 	}
 
 	private boolean countryExists(Country country) {
@@ -238,18 +267,36 @@ public class MainService implements ServiceBase {
 		return check;
 	}
 
-	public String saveUpdatedCity(City city) {
+	@Override
+	public String saveUpdatedCity(City city, Long cityID, Long countryID) {
+		city.setId(cityID);
+		city.setCountry(countryDAO.getByKey(countryID));
 		cityDAO.update(city);
-		return "succes";
+		return "City was updated.";
 	}
 
-	public String saveUpdatedContact(Contact contact) {
+	@Override
+	public String saveUpdatedContact(Contact contact, Long contactID, Long addressID, Long sexID) {
+		contact.setId(contactID);
+		contact.setAddress(addressDAO.getByKey(addressID));
+		contact.setSex(sexDAO.getByKey(sexID));
 		contactDAO.update(contact);
-		return "succes";
+		return "Contact was updated.";
 	}
 
-	public String saveUpdatedAddress(Address address) {
+	@Override
+	public String saveUpdatedAddress(Address address, Long addressID, Long cityID) {
+		address.setId(addressID);
+		address.setCity(cityDAO.getByKey(cityID));
 		addressDAO.update(address);
-		return "succes";
+		return "Address was updated.";
 	}
+
+	@Override
+	public String saveUpdatedCountry(Country country, Long countryID) {
+		country.setId(countryID);
+		countryDAO.update(country);
+		return "Country was updated.";
+	}
+
 }

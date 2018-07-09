@@ -1,6 +1,7 @@
 package com.zadatak.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,29 +29,33 @@ public class ContactController {
 		model.addAttribute("newContact", contact);
 		return "manipulation/newContact";
 	}
-	
+
 	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
 	public String saveContact(@Valid @ModelAttribute("newContact") Contact contact, BindingResult result, Model model,
 			HttpServletRequest request) {
 
 		if (result.hasErrors()) {
+			System.out.println(result.getFieldError());
 			model.addAllAttributes(result.getModel());
 			model.addAttribute("addresses", mainService.getAddresses());
 			model.addAttribute("sexs", mainService.getSexs());
 			return "manipulation/newContact";
 		} else {
-			String error = mainService.saveNewContact(contact);
+			long addressID = Long.parseLong(request.getParameter("addresses"));
+			long sexID = Long.parseLong(request.getParameter("sexs"));
+
+			String error = mainService.saveNewContact(contact, addressID, sexID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
 		}
 
 	}
 
-
 	@RequestMapping(value = "/editContact", method = RequestMethod.GET)
 	public String editContact(HttpServletRequest request, Model model) {
 		long contactId = Long.parseLong(request.getParameter("id"));
 		Contact contact = mainService.prepareContact(contactId);
+		model.addAttribute("contactId", contactId);
 		model.addAttribute("editContact", contact);
 
 		model.addAttribute("addresses", mainService.getAddresses());
@@ -58,22 +63,25 @@ public class ContactController {
 
 		return "manipulation/editContact";
 	}
-	
+
 	@RequestMapping(value = "/saveEditContact", method = RequestMethod.POST)
-	public String saveEditContact(@Valid @ModelAttribute("editContact") Contact contact, BindingResult result, Model model,
-			HttpServletRequest request) {
+	public String saveEditContact(@Valid @ModelAttribute("editContact") Contact contact, BindingResult result,
+			Model model, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
 			return "manipulation/editContact";
 		} else {
-			String error = mainService.saveUpdatedContact(contact);
+			HttpSession session = request.getSession();
+			long contactID = (Long) session.getAttribute("contactId");
+			long addressID = Long.parseLong(request.getParameter("addresses"));
+			long sexID = Long.parseLong(request.getParameter("sexs"));
+			String error = mainService.saveUpdatedContact(contact, contactID, addressID, sexID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
 		}
 
 	}
-
 
 	@RequestMapping(value = "/deleteContact", method = RequestMethod.GET)
 	public String deleteContact(HttpServletRequest request) {

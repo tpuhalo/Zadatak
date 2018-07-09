@@ -24,7 +24,6 @@ public class AddressController {
 	public AddressController() {
 	}
 
-
 	@RequestMapping(value = "/newAddress", method = RequestMethod.GET)
 	public String newAddress(Model model) {
 		Address address = new Address();
@@ -32,7 +31,7 @@ public class AddressController {
 		model.addAttribute("addressInfo", address);
 		return "manipulation/newAddress";
 	}
-	
+
 	@RequestMapping(value = "/saveAddress", method = RequestMethod.POST)
 	public String saveAddress(@Valid @ModelAttribute("addressInfo") Address address, BindingResult result, Model model,
 			HttpServletRequest request) {
@@ -42,15 +41,17 @@ public class AddressController {
 			model.addAttribute("cities", mainService.getCities());
 			return "manipulation/newAddress";
 		} else {
-			String error = mainService.saveNewAddress(address);
+			long cityID = Long.parseLong(request.getParameter("cities"));
+			String error = mainService.saveNewAddress(address, cityID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/address";
 		}
 	}
-	
+
 	@RequestMapping(value = "/editAddress", method = RequestMethod.GET)
 	public String editAddress(HttpServletRequest request, Model model) {
 		long addressId = Long.parseLong(request.getParameter("id"));
+		model.addAttribute("addressId", addressId);
 		model.addAttribute("cities", mainService.getCities());
 		model.addAttribute("editAddress", mainService.prepareAddress(addressId));
 
@@ -58,15 +59,18 @@ public class AddressController {
 	}
 
 	@RequestMapping(value = "/saveEditAddress", method = RequestMethod.POST)
-	public String saveEditAddress(@Valid @ModelAttribute("editAddress") Address address, BindingResult result, Model model,
-			HttpServletRequest request) {
+	public String saveEditAddress(@Valid @ModelAttribute("editAddress") Address address, BindingResult result,
+			Model model, HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
 			model.addAttribute("cities", mainService.getCities());
 			return "manipulation/editAddress";
 		} else {
-			String error = mainService.saveUpdatedAddress(address);
+			HttpSession session = request.getSession();
+			long addressId = (Long) session.getAttribute("addressId");
+			long cityID = Long.parseLong(request.getParameter("countries"));
+			String error = mainService.saveUpdatedAddress(address, addressId, cityID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/address";
 		}

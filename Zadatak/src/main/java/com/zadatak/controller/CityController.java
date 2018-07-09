@@ -42,7 +42,8 @@ public class CityController {
 			model.addAttribute("countries", mainService.getCountry());
 			return "manipulation/newCity";
 		} else {
-			String error = mainService.saveNewCity(city);
+			long countryID = Long.parseLong(request.getParameter("countries"));
+			String error = mainService.saveNewCity(city, countryID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/city";
 		}
@@ -51,6 +52,7 @@ public class CityController {
 	@RequestMapping(value = "/editCity", method = RequestMethod.GET)
 	public String editAddress(HttpServletRequest request, Model model) {
 		long cityId = Long.parseLong(request.getParameter("id"));
+		model.addAttribute("cityId", cityId);
 		model.addAttribute("countries", mainService.getCountry());
 		model.addAttribute("editCity", mainService.prepareCity(cityId));
 
@@ -58,15 +60,19 @@ public class CityController {
 	}
 
 	@RequestMapping(value = "/saveEditCity", method = RequestMethod.POST)
-	public String saveEditAddress(@Valid @ModelAttribute("editCity") City city, BindingResult result,
-			Model model, HttpServletRequest request) {
+	public String saveEditAddress(@Valid @ModelAttribute("editCity") City city, BindingResult result, Model model,
+			HttpServletRequest request) {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
 			model.addAttribute("countries", mainService.getCountry());
 			return "manipulation/editAddress";
 		} else {
-			String error = mainService.saveUpdatedCity(city);
+			HttpSession session = request.getSession();
+			long cityID = (Long) session.getAttribute("cityId");
+			long countryID = Long.parseLong(request.getParameter("countries"));
+			System.out.println(city.getId());
+			String error = mainService.saveUpdatedCity(city, cityID, countryID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/city";
 		}

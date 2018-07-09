@@ -37,22 +37,21 @@ cb {
 			<table>
 				<tr>
 					<td>Street:</td>
-					<td><form:input path="street" placeholder="Enter street name"
-							cssClass="ciput"></form:input> <form:errors path="street"
-							cssClass="cb"></form:errors></td>
+					<td><form:input path="street" placeholder="Enter street name"></form:input>
+						<form:errors path="street"></form:errors></td>
 				</tr>
 				<tr>
 					<td>Street number:</td>
 					<td><form:input path="streetNumber"
-							placeholder="Enter street number" cssClass="ciput"></form:input>
-						<form:errors path="streetNumber" cssClass="cb"></form:errors></td>
+							placeholder="Enter street number"></form:input> <form:errors
+							path="streetNumber"></form:errors></td>
 				</tr>
 				<tr>
 					<td>City:</td>
 					<td><select name="cities">
 							<c:forEach items="${cities}" var="city">
-								<option value="${city.id}">${city.name} ${city.zipCode},
-									${city.country.name}</option>
+								<option value="${city.id}">${city.name}
+									${city.zipCode}, ${city.country.name}</option>
 							</c:forEach>
 					</select></td>
 				</tr>

@@ -38,23 +38,21 @@ cb {
 				<tr>
 					<td>First Name:</td>
 					<td><form:input path="firstName" /> <form:errors
-							path="firstName" cssClass="cb" /></td>
+							path="firstName" /></td>
 				</tr>
 				<tr>
 					<td>Last Name:</td>
-					<td><form:input path="lastName" />
-						<form:errors path="lastName" cssClass="cb" /></td>
+					<td><form:input path="lastName" /> <form:errors
+							path="lastName" /></td>
 				</tr>
 
 				<tr>
 					<td>Telephone:</td>
-					<td><form:input path="phone" /> <form:errors path="phone"
-							cssClass="cb" /></td>
+					<td><form:input path="phone" /> <form:errors path="phone" /></td>
 				</tr>
 				<tr>
 					<td>Email:</td>
-					<td><form:input path="email" /> <form:errors path="email"
-							cssClass="cb" /></td>
+					<td><form:input path="email" /> <form:errors path="email" /></td>
 				</tr>
 				<tr>
 					<td>Sex:</td>
