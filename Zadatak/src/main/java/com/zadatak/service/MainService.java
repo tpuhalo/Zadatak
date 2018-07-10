@@ -79,7 +79,8 @@ public class MainService implements ServiceBase {
 		String error = "";
 		if (contact != null) {
 			boolean check = contactExists(contact);
-			if (!check) {
+			//if contact exist in database we don't do saving
+			if (!check) { 
 				Address address = addressDAO.getByKey(addressID);
 				contact.setAddress(address);
 				Sex sex = sexDAO.getByKey(sexID);
@@ -96,9 +97,10 @@ public class MainService implements ServiceBase {
 	public boolean contactExists(Contact contact) {
 		List<Contact> contacts = contactDAO.findAll();
 		boolean check = false;
-		if (contacts == null)
+		if (contacts == null)//if null it doesnt exists
 			return check;
 		else
+			//checking for every contact from database if it equal to requested contact
 			for (Contact contactDatabase : contacts) {
 				if (contact.equals(contactDatabase))
 					check = true;

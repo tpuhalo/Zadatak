@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zadatak.domain.Country;
-import com.zadatak.service.MainService;
+import com.zadatak.service.ServiceBase;
 
 /**
  * Country controller for handling GET and POST requests for 
@@ -28,7 +28,7 @@ import com.zadatak.service.MainService;
 public class CountryController {
 
 	@Autowired
-	private MainService mainService;
+	private ServiceBase serviceBase;
 
 	@RequestMapping(value = "/newCountry", method = RequestMethod.GET)
 	public String newCountry(Model model) {
@@ -45,7 +45,7 @@ public class CountryController {
 			model.addAllAttributes(result.getModel());
 			return "manipulation/newCountry";
 		} else {
-			String error = mainService.saveNewCountry(country);
+			String error = serviceBase.saveNewCountry(country);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/country";
 		}
@@ -55,7 +55,7 @@ public class CountryController {
 	@RequestMapping(value = "/editCountry", method = RequestMethod.GET)
 	public String editCountry(HttpServletRequest request, Model model) {
 		long countryID = Long.parseLong(request.getParameter("id"));
-		Country country = mainService.prepareCountry(countryID);
+		Country country = serviceBase.prepareCountry(countryID);
 		HttpSession session = request.getSession();
 		session.setAttribute("countryId", countryID);
 		model.addAttribute("editCountry", country);
@@ -74,7 +74,7 @@ public class CountryController {
 			HttpSession session = request.getSession();
 			long countryID = (Long) session.getAttribute("countryId");
 			System.out.println(countryID);
-			String error = mainService.saveUpdatedCountry(country, countryID);
+			String error = serviceBase.saveUpdatedCountry(country, countryID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/country";
 		}
@@ -84,7 +84,7 @@ public class CountryController {
 	@RequestMapping(value = "/deleteCountry", method = RequestMethod.GET)
 	public String deleteCountry(HttpServletRequest request) {
 		long countryId = Long.parseLong(request.getParameter("id"));
-		String error = mainService.deleteCountry(countryId);
+		String error = serviceBase.deleteCountry(countryId);
 		HttpSession session = request.getSession();
 		session.setAttribute("error", error);
 		return "redirect:/country";

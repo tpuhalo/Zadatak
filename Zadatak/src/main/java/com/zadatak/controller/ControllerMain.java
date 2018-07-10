@@ -16,12 +16,11 @@ import com.zadatak.domain.Address;
 import com.zadatak.domain.City;
 import com.zadatak.domain.Contact;
 import com.zadatak.domain.Country;
-import com.zadatak.service.MainService;
+import com.zadatak.service.ServiceBase;
 
 /**
- * Main controller for handling get requests for 
- * displaying contacts, addresses, cities and countries 
- * saved in database.
+ * Main controller for handling get requests for displaying contacts, addresses,
+ * cities and countries saved in database.
  * 
  * @author tpuhalo
  *
@@ -31,7 +30,7 @@ import com.zadatak.service.MainService;
 public class ControllerMain {
 
 	@Autowired
-	private MainService mainService;
+	private ServiceBase serviceBase;
 
 	@RequestMapping(value = { "/" })
 	public String listUsers(ModelMap model) {
@@ -40,7 +39,7 @@ public class ControllerMain {
 
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public String contactList(Model model, HttpServletRequest request) throws IOException {
-		List<Contact> contact = (List<Contact>) mainService.getContacts();
+		List<Contact> contact = (List<Contact>) serviceBase.getContacts();
 		String error = (String) request.getSession().getAttribute("error");
 		request.getSession().removeAttribute("error");
 		model.addAttribute("contact", contact);
@@ -50,7 +49,7 @@ public class ControllerMain {
 
 	@RequestMapping(value = "/address", method = RequestMethod.GET)
 	public String addressList(Model model, HttpServletRequest request) throws IOException {
-		List<Address> address = mainService.getAddresses();
+		List<Address> address = serviceBase.getAddresses();
 		String error = (String) request.getSession().getAttribute("error");
 		request.getSession().removeAttribute("error");
 		model.addAttribute("address", address);
@@ -60,7 +59,7 @@ public class ControllerMain {
 
 	@RequestMapping(value = "/city", method = RequestMethod.GET)
 	public String cityList(Model model, HttpServletRequest request) throws IOException {
-		List<City> city = mainService.getCities();
+		List<City> city = serviceBase.getCities();
 		String error = (String) request.getSession().getAttribute("error");
 		request.getSession().removeAttribute("error");
 		model.addAttribute("city", city);
@@ -70,7 +69,7 @@ public class ControllerMain {
 
 	@RequestMapping(value = "/country", method = RequestMethod.GET)
 	public String countryList(Model model, HttpServletRequest request) throws IOException {
-		List<Country> country = mainService.getCountry();
+		List<Country> country = serviceBase.getCountry();
 		String error = (String) request.getSession().getAttribute("error");
 		request.getSession().removeAttribute("error");
 		model.addAttribute("country", country);

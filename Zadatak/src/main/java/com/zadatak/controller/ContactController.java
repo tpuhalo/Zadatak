@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zadatak.domain.Contact;
-import com.zadatak.service.MainService;
+import com.zadatak.service.ServiceBase;
 
 /**
  * Contact controller for handling GET and POST requests for 
@@ -28,13 +28,13 @@ import com.zadatak.service.MainService;
 public class ContactController {
 
 	@Autowired
-	private MainService mainService;
+	private ServiceBase serviceBase;
 
 	@RequestMapping(value = "/newContact", method = RequestMethod.GET)
 	public String newContact(Model model) {
 		Contact contact = new Contact();
-		model.addAttribute("addresses", mainService.getAddresses());
-		model.addAttribute("sexs", mainService.getSexs());
+		model.addAttribute("addresses", serviceBase.getAddresses());
+		model.addAttribute("sexs", serviceBase.getSexs());
 		model.addAttribute("newContact", contact);
 		return "manipulation/newContact";
 	}
@@ -46,14 +46,14 @@ public class ContactController {
 		if (result.hasErrors()) {
 			System.out.println(result.getFieldError());
 			model.addAllAttributes(result.getModel());
-			model.addAttribute("addresses", mainService.getAddresses());
-			model.addAttribute("sexs", mainService.getSexs());
+			model.addAttribute("addresses", serviceBase.getAddresses());
+			model.addAttribute("sexs", serviceBase.getSexs());
 			return "manipulation/newContact";
 		} else {
 			long addressID = Long.parseLong(request.getParameter("addresses"));
 			long sexID = Long.parseLong(request.getParameter("sexs"));
 			System.out.println(addressID + sexID);
-			String error = mainService.saveNewContact(contact, addressID, sexID);
+			String error = serviceBase.saveNewContact(contact, addressID, sexID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
 		}
@@ -63,13 +63,13 @@ public class ContactController {
 	@RequestMapping(value = "/editContact", method = RequestMethod.GET)
 	public String editContact(HttpServletRequest request, Model model) {
 		long contactId = Long.parseLong(request.getParameter("id"));
-		Contact contact = mainService.prepareContact(contactId);
+		Contact contact = serviceBase.prepareContact(contactId);
 		HttpSession session = request.getSession();
 		session.setAttribute("contactId", contactId);
 		model.addAttribute("editContact", contact);
 
-		model.addAttribute("addresses", mainService.getAddresses());
-		model.addAttribute("sexs", mainService.getSexs());
+		model.addAttribute("addresses", serviceBase.getAddresses());
+		model.addAttribute("sexs", serviceBase.getSexs());
 
 		return "manipulation/editContact";
 	}
@@ -81,15 +81,15 @@ public class ContactController {
 		if (result.hasErrors()) {
 			System.out.println(result.getFieldError());
 			model.addAllAttributes(result.getModel());
-			model.addAttribute("addresses", mainService.getAddresses());
-			model.addAttribute("sexs", mainService.getSexs());
+			model.addAttribute("addresses", serviceBase.getAddresses());
+			model.addAttribute("sexs", serviceBase.getSexs());
 			return "manipulation/editContact";
 		} else {
 			HttpSession session = request.getSession();
 			long contactID = (Long) session.getAttribute("contactId");
 			long addressID = Long.parseLong(request.getParameter("addresses"));
 			long sexID = Long.parseLong(request.getParameter("sexs"));
-			String error = mainService.saveUpdatedContact(contact, contactID, addressID, sexID);
+			String error = serviceBase.saveUpdatedContact(contact, contactID, addressID, sexID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
 		}
@@ -100,7 +100,7 @@ public class ContactController {
 	public String deleteContact(HttpServletRequest request) {
 		long contactId = Long.parseLong(request.getParameter("id"));
 
-		mainService.deleteContact(contactId);
+		serviceBase.deleteContact(contactId);
 		return "redirect:/contact";
 	}
 }

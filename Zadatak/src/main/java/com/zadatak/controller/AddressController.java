@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zadatak.domain.Address;
-import com.zadatak.service.MainService;
+import com.zadatak.service.ServiceBase;
 
 
 /**
@@ -29,7 +29,7 @@ import com.zadatak.service.MainService;
 public class AddressController {
 
 	@Autowired
-	private MainService mainService;
+	private ServiceBase serviceBase;
 
 	public AddressController() {
 	}
@@ -37,7 +37,7 @@ public class AddressController {
 	@RequestMapping(value = "/newAddress", method = RequestMethod.GET)
 	public String newAddress(Model model) {
 		Address address = new Address();
-		model.addAttribute("cities", mainService.getCities());
+		model.addAttribute("cities", serviceBase.getCities());
 		model.addAttribute("addressInfo", address);
 		return "manipulation/newAddress";
 	}
@@ -48,11 +48,11 @@ public class AddressController {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
-			model.addAttribute("cities", mainService.getCities());
+			model.addAttribute("cities", serviceBase.getCities());
 			return "manipulation/newAddress";
 		} else {
 			long cityID = Long.parseLong(request.getParameter("cities"));
-			String error = mainService.saveNewAddress(address, cityID);
+			String error = serviceBase.saveNewAddress(address, cityID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/address";
 		}
@@ -63,8 +63,8 @@ public class AddressController {
 		long addressId = Long.parseLong(request.getParameter("id"));
 		HttpSession session = request.getSession();
 		session.setAttribute("addressId", addressId);
-		model.addAttribute("cities", mainService.getCities());
-		model.addAttribute("editAddress", mainService.prepareAddress(addressId));
+		model.addAttribute("cities", serviceBase.getCities());
+		model.addAttribute("editAddress", serviceBase.prepareAddress(addressId));
 
 		return "manipulation/editAddress";
 	}
@@ -75,7 +75,7 @@ public class AddressController {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
-			model.addAttribute("cities", mainService.getCities());
+			model.addAttribute("cities", serviceBase.getCities());
 			return "manipulation/editAddress";
 		} else {
 			HttpSession session = request.getSession();
@@ -83,7 +83,7 @@ public class AddressController {
 			session.removeAttribute("addressId");
 
 			long cityID = Long.parseLong(request.getParameter("cities"));
-			String error = mainService.saveUpdatedAddress(address, addressId, cityID);
+			String error = serviceBase.saveUpdatedAddress(address, addressId, cityID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/address";
 		}
@@ -93,7 +93,7 @@ public class AddressController {
 	@RequestMapping(value = "/deleteAddress", method = RequestMethod.GET)
 	public String deleteAddress(Model model, HttpServletRequest request) {
 		long addressId = Long.parseLong(request.getParameter("id"));
-		String error = mainService.deleteAddress(addressId);
+		String error = serviceBase.deleteAddress(addressId);
 		HttpSession session = request.getSession();
 		session.setAttribute("error", error);
 		return "redirect:/address";

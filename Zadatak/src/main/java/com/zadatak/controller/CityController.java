@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.zadatak.domain.City;
-import com.zadatak.service.MainService;
+import com.zadatak.service.ServiceBase;
 
 /**
  * City controller for handling GET and POST requests for 
@@ -28,7 +28,7 @@ import com.zadatak.service.MainService;
 public class CityController {
 
 	@Autowired
-	private MainService mainService;
+	private ServiceBase serviceBase;
 
 	public CityController() {
 
@@ -37,7 +37,7 @@ public class CityController {
 	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
 	public String newAddress(Model model) {
 		City city = new City();
-		model.addAttribute("countries", mainService.getCountry());
+		model.addAttribute("countries", serviceBase.getCountry());
 		model.addAttribute("cityInfo", city);
 		return "manipulation/newCity";
 	}
@@ -48,11 +48,11 @@ public class CityController {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
-			model.addAttribute("countries", mainService.getCountry());
+			model.addAttribute("countries", serviceBase.getCountry());
 			return "manipulation/newCity";
 		} else {
 			long countryID = Long.parseLong(request.getParameter("countries"));
-			String error = mainService.saveNewCity(city, countryID);
+			String error = serviceBase.saveNewCity(city, countryID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/city";
 		}
@@ -63,8 +63,8 @@ public class CityController {
 		long cityId = Long.parseLong(request.getParameter("id"));
 		HttpSession session = request.getSession();
 		session.setAttribute("cityId", cityId);
-		model.addAttribute("countries", mainService.getCountry());
-		model.addAttribute("editCity", mainService.prepareCity(cityId));
+		model.addAttribute("countries", serviceBase.getCountry());
+		model.addAttribute("editCity", serviceBase.prepareCity(cityId));
 
 		return "manipulation/editCity";
 	}
@@ -75,7 +75,7 @@ public class CityController {
 
 		if (result.hasErrors()) {
 			model.addAllAttributes(result.getModel());
-			model.addAttribute("countries", mainService.getCountry());
+			model.addAttribute("countries", serviceBase.getCountry());
 			return "manipulation/editAddress";
 
 		} else {
@@ -83,7 +83,7 @@ public class CityController {
 			long cityID = (Long) session.getAttribute("cityId");
 			session.removeAttribute("cityId");
 			long countryID = Long.parseLong(request.getParameter("countries"));
-			String error = mainService.saveUpdatedCity(city, cityID, countryID);
+			String error = serviceBase.saveUpdatedCity(city, cityID, countryID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/city";
 		}
@@ -93,7 +93,7 @@ public class CityController {
 	@RequestMapping(value = "/deleteCity", method = RequestMethod.GET)
 	public String deleteCity(Model model, HttpServletRequest request) {
 		long cityId = Long.parseLong(request.getParameter("id"));
-		String error = mainService.deleteCity(cityId);
+		String error = serviceBase.deleteCity(cityId);
 		HttpSession session = request.getSession();
 		session.setAttribute("error", error);
 		return "redirect:/city";
