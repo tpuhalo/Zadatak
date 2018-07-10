@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zadatak.domain.Contact;
 import com.zadatak.service.MainService;
 
+/**
+ * Contact controller for handling GET and POST requests for 
+ * creating new contact, changing particular contact or deleting 
+ * existing contact from database.
+ * 
+ * @author tpuhalo
+ *
+ */
+
 @Controller
 public class ContactController {
 

@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <title>Adresar</title>
 <style>
 table {
@@ -30,7 +30,7 @@ table, th, td {
 		<form:form action="saveEditCountry" modelAttribute="editCountry" method="POST">
 			<table>
 			<tr>
-					<td><form:label path="name" cssClass="clabel">Country: </form:label></td>
+					<td><form:label path="name" cssClass="clabel">Država: </form:label></td>
 					<td><form:input path="name"
 							placeholder="Enter country name" />
 					<form:errors path="name"></form:errors></td>
@@ -48,7 +48,7 @@ table, th, td {
 					<form:errors path="alpha3" ></form:errors></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="submit" value="Submit"></td>
+					<td align="center"><input type="submit" value="Promijeni"></td>
 				</tr>
 			</table>
 		</form:form>

@@ -18,6 +18,15 @@ import com.zadatak.domain.Contact;
 import com.zadatak.domain.Country;
 import com.zadatak.service.MainService;
 
+/**
+ * Main controller for handling get requests for 
+ * displaying contacts, addresses, cities and countries 
+ * saved in database.
+ * 
+ * @author tpuhalo
+ *
+ */
+
 @Controller
 public class ControllerMain {
 

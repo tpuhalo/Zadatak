@@ -1,12 +1,13 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
+
 <title>Adresar</title>
 <style>
 table {
@@ -36,18 +37,18 @@ cb {
 			method="POST">
 			<table>
 				<tr>
-					<td>First Name:</td>
+					<td>Ime:</td>
 					<td><form:input path="firstName" /> <form:errors
 							path="firstName" /></td>
 				</tr>
 				<tr>
-					<td>Last Name:</td>
+					<td>Prezime:</td>
 					<td><form:input path="lastName" /> <form:errors
 							path="lastName" /></td>
 				</tr>
 
 				<tr>
-					<td>Telephone:</td>
+					<td>Telefon:</td>
 					<td><form:input path="phone" /> <form:errors path="phone" /></td>
 				</tr>
 				<tr>
@@ -55,7 +56,7 @@ cb {
 					<td><form:input path="email" /> <form:errors path="email" /></td>
 				</tr>
  				<tr>
-					<td>Sex:</td>
+					<td>Spol:</td>
 					<td><select name="sexs">
 							<c:forEach items="${sexs}" var="sex">
 								<option value="${sex.id}">${sex.name}</option>
@@ -63,7 +64,7 @@ cb {
 						</select></td>
 				</tr> 
 				<tr>
-					<td>Address:</td>
+					<td>Adresa:</td>
 					<td><select name="addresses">
 							<c:forEach items="${addresses}" var="address">
 								<option value="${address.id}">${address.street}
@@ -75,7 +76,7 @@ cb {
 
 
 				<tr>
-					<td align="center"><input type="submit" value="Submit"></td>
+					<td align="center"><input type="submit" value="Unesi"></td>
 				</tr>
 			</table>
 		</form:form>

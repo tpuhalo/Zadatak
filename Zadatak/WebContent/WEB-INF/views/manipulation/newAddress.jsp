@@ -1,12 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv='Content-Type' content='text/html; charset=UTF-8' />
 <title>Adresar</title>
 <style>
 table {
@@ -36,18 +36,18 @@ cb {
 			method="POST">
 			<table>
 				<tr>
-					<td>Street:</td>
+					<td>Ulica:</td>
 					<td><form:input path="street" placeholder="Enter street name"></form:input>
 						<form:errors path="street"></form:errors></td>
 				</tr>
 				<tr>
-					<td>Street number:</td>
+					<td>Ulični broj:</td>
 					<td><form:input path="streetNumber"
 							placeholder="Enter street number"></form:input> <form:errors
 							path="streetNumber"></form:errors></td>
 				</tr>
 				<tr>
-					<td>City:</td>
+					<td>Grad:</td>
 					<td><select name="cities">
 							<c:forEach items="${cities}" var="city">
 								<option value="${city.id}">${city.name}
@@ -56,7 +56,7 @@ cb {
 					</select></td>
 				</tr>
 				<tr>
-					<td align="center"><input type="submit" value="Submit"></td>
+					<td align="center"><input type="submit" value="Unesi"></td>
 				</tr>
 			</table>
 		</form:form>

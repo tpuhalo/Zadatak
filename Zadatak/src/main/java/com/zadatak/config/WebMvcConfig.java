@@ -36,12 +36,4 @@ public class WebMvcConfig extends WebMvcConfigurerAdapter {
 		matcher.setUseRegisteredSuffixPatternMatch(true);
 	}
 
-	// /**
-	// * Configure ResourceHandlers to serve static resources like CSS
-	// */
-	// @Override
-	// public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	// registry.addResourceHandler("").addResourceLocations("");
-	// }
-
 }

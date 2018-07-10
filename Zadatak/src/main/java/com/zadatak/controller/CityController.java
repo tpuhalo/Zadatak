@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zadatak.domain.City;
 import com.zadatak.service.MainService;
 
+/**
+ * City controller for handling GET and POST requests for 
+ * creating new city, changing particular city or deleting 
+ * existing city from database.
+ * 
+ * @author tpuhalo
+ *
+ */
+
 @Controller
 public class CityController {
 

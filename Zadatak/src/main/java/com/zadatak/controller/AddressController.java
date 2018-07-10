@@ -15,6 +15,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zadatak.domain.Address;
 import com.zadatak.service.MainService;
 
+
+/**
+ * Address controller for handling GET and POST requests for 
+ * creating new address, changing particular address or deleting 
+ * existing address from database.
+ * 
+ * @author tpuhalo
+ *
+ */
+
 @Controller
 public class AddressController {
 

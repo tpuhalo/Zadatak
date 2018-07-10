@@ -17,6 +17,14 @@ import com.zadatak.domain.Contact;
 import com.zadatak.domain.Country;
 import com.zadatak.domain.Sex;
 
+/**
+ * Service class for spring framework.
+ * Here we are coding bussines logic.
+ * 
+ * @author tpuhalo
+ *
+ */
+
 @Service
 @Transactional
 public class MainService implements ServiceBase {
@@ -34,6 +42,7 @@ public class MainService implements ServiceBase {
 
 	public MainService() {
 	}
+
 
 	@Override
 	public List<Contact> getContacts() {
@@ -237,8 +246,8 @@ public class MainService implements ServiceBase {
 
 	@Override
 	public City prepareCity(long cityId) {
-		City city = cityDAO.getByKey(cityId);
-		return city;
+		return cityDAO.getByKey(cityId);
+		
 	}
 
 	@Override
@@ -248,8 +257,7 @@ public class MainService implements ServiceBase {
 
 	@Override
 	public Address prepareAddress(long addressId) {
-		Address address = addressDAO.getByKey(addressId);
-		return address;
+		return addressDAO.getByKey(addressId);
 	}
 
 	@Override

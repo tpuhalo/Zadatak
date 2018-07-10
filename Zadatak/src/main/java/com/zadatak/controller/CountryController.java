@@ -15,6 +15,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.zadatak.domain.Country;
 import com.zadatak.service.MainService;
 
+/**
+ * Country controller for handling GET and POST requests for 
+ * creating new country, changing particular country or deleting 
+ * existing country from database.
+ * 
+ * @author tpuhalo
+ *
+ */
+
 @Controller
 public class CountryController {
 
