@@ -23,7 +23,9 @@ table, th, td {
 	<h2 align="center" style="color: #DF01010">Adresar</h2>
 	<hr />
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-
+	<div align="right">
+		<input type="submit" value="Logout" />
+	</div>
 
 
 	<div align="center">

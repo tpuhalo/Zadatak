@@ -17,11 +17,25 @@ h2 {
 </style>
 </head>
 <body>
-	<h2>Adresar</h2>
+	<h2>Login za adresar</h2>
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-	<div style="text-align: center">
-		<a href="${contextPath}/contact"style="font-size: 20px">Klikni ovdje za ulazak u adresar<br />
-		</a>
+	<div align="center">
+		<h3>Unesite ime i lozinku</h3>
+
+		<form name='login' action="@{/login}" method='POST'>
+			<table>
+				<tr>
+					<td>Ime:</td>
+					<td><input type='text' name='username' value=''></td>
+				</tr>
+				<tr>
+					<td>Lozinka:</td>
+					<td><input type='password' name='password' /></td>
+				</tr>
+				<tr>
+					<td><input name="submit" type="submit" value="Log in" /></td>
+				</tr>
+			</table>
+		</form>
 	</div>
-</body>
 </html>

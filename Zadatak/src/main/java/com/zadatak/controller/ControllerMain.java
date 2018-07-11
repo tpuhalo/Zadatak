@@ -32,12 +32,12 @@ public class ControllerMain {
 	@Autowired
 	private ServiceBase serviceBase;
 
-	@RequestMapping(value = { "/" })
-	public String listUsers(ModelMap model) {
+	@RequestMapping(value = { "/" , "/home"})
+	public String home(ModelMap model) {
 		return "home";
 	}
 
-	@RequestMapping(value = "/contact", method = RequestMethod.GET)
+	@RequestMapping(value = {"/contact", "/login"}, method = RequestMethod.GET)
 	public String contactList(Model model, HttpServletRequest request) throws IOException {
 		List<Contact> contact = (List<Contact>) serviceBase.getContacts();
 		String error = (String) request.getSession().getAttribute("error");
