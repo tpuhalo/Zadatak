@@ -83,7 +83,7 @@ cb {
 	</div>
 	<hr>
 	<div align="right">
-		<a href="${contextPath}">Home</a> <br /> Tihomir Puhalo
+ <br /> Tihomir Puhalo
 
 	</div>
 </body>

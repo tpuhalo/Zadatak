@@ -19,6 +19,7 @@ public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK
 		this.persistentClass = entityClass;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public Criteria createEntityCriteria() {
 		return getSession().createCriteria(persistentClass);
@@ -41,7 +42,6 @@ public abstract class DaoClass<PK extends Serializable, T> implements DaoBase<PK
 	}
 	
 	@Override
-	@SuppressWarnings("unchecked")
 	public T getByKey(PK key) {
 		return (T) getSession().get(persistentClass, key);
 	}

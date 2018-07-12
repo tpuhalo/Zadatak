@@ -4,11 +4,13 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -32,12 +34,30 @@ public class ControllerMain {
 	@Autowired
 	private ServiceBase serviceBase;
 
-	@RequestMapping(value = { "/" , "/home"})
-	public String home(ModelMap model) {
+	@RequestMapping(value = { "/", "/home" })
+	public String home() {
 		return "home";
 	}
 
-	@RequestMapping(value = {"/contact", "/login"}, method = RequestMethod.GET)
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String logIn(@Valid @ModelAttribute("username") String username,
+			@Valid @ModelAttribute("password") String password, BindingResult result, Model model,
+			HttpServletRequest request) {
+		String view = "";
+		if (username.equals("user") && password.equals("12345")) {
+			view = "redirect:/contact";
+		} else {
+			view = "home";
+		}
+		return view;
+	}
+
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logOut() {
+		return "home";
+	}
+
+	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public String contactList(Model model, HttpServletRequest request) throws IOException {
 		List<Contact> contact = (List<Contact>) serviceBase.getContacts();
 		String error = (String) request.getSession().getAttribute("error");
@@ -78,7 +98,7 @@ public class ControllerMain {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String invalidURL(HttpServletRequest request) {
+	public String invalidURL() {
 		return "redirect:/";
 	}
 }

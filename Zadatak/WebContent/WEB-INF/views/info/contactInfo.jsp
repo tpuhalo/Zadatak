@@ -23,8 +23,8 @@ table, th, td {
 	<h2 align="center" style="color: #DF01010">Adresar</h2>
 	<hr />
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-<div align="right">
-		<form action="@{/logout}" method="post">
+	<div align="right">
+		<form action="${contextPath}/logout" method="GET">
 			<input type="submit" value="Log out" />
 		</form>
 	</div>
@@ -81,7 +81,7 @@ table, th, td {
 	</div>
 	<hr>
 	<div align="right">
-		<a href="${contextPath}">Home</a> <br /> Tihomir Puhalo
+		<br /> Tihomir Puhalo
 
 	</div>
 </body>
