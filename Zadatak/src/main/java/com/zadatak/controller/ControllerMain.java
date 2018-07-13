@@ -9,7 +9,6 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -39,14 +38,23 @@ public class ControllerMain {
 		return "home";
 	}
 
+	/**
+	 * Method for login.
+	 * 
+	 * @param username
+	 * @param password
+	 * @return String
+	 */
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String logIn(@Valid @ModelAttribute("username") String username,
-			@Valid @ModelAttribute("password") String password, BindingResult result, Model model,
-			HttpServletRequest request) {
+			@Valid @ModelAttribute("password") String password) {
 		String view = "";
-		if (username.equals("user") && password.equals("12345")) {
-			view = "redirect:/contact";
-		} else {
+		// verification of user
+		if (username.equals("user") && password.equals("12345")) { // if username is
+																	// user and password 12345
+			view = "redirect:/contact"; // redirect to contact
+		} else { // if not we staying at home
 			view = "home";
 		}
 		return view;
@@ -57,16 +65,34 @@ public class ControllerMain {
 		return "home";
 	}
 
+	/**
+	 * Method for fetching contacts from service. And putting them to the page
+	 * attribute.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/contact", method = RequestMethod.GET)
 	public String contactList(Model model, HttpServletRequest request) throws IOException {
-		List<Contact> contact = (List<Contact>) serviceBase.getContacts();
+		List<Contact> contact = (List<Contact>) serviceBase.getContacts(); // fetching list of contacts
 		String error = (String) request.getSession().getAttribute("error");
 		request.getSession().removeAttribute("error");
-		model.addAttribute("contact", contact);
+		model.addAttribute("contact", contact); // adding contact to attribute
 		model.addAttribute("error", error);
 		return "info/contactInfo";
 	}
 
+	/**
+	 * Method for fetching addreses from service. And putting them to the page
+	 * attribute.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/address", method = RequestMethod.GET)
 	public String addressList(Model model, HttpServletRequest request) throws IOException {
 		List<Address> address = serviceBase.getAddresses();
@@ -77,6 +103,15 @@ public class ControllerMain {
 		return "info/addressInfo";
 	}
 
+	/**
+	 * Method for fetching cities from service. And putting them to the page
+	 * attribute.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/city", method = RequestMethod.GET)
 	public String cityList(Model model, HttpServletRequest request) throws IOException {
 		List<City> city = serviceBase.getCities();
@@ -87,6 +122,15 @@ public class ControllerMain {
 		return "info/cityInfo";
 	}
 
+	/**
+	 * Method for fetching countries from service. And putting them to the page
+	 * attribute.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 * @throws IOException
+	 */
 	@RequestMapping(value = "/country", method = RequestMethod.GET)
 	public String countryList(Model model, HttpServletRequest request) throws IOException {
 		List<Country> country = serviceBase.getCountry();

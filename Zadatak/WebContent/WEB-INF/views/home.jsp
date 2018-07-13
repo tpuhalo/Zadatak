@@ -23,7 +23,7 @@ h2 {
 	<div align="center">
 		<h3>Unesite ime i lozinku</h3>
 
-		<form action="${contextPath}/login" method="GET">
+		<form th:action="@{/login}" method="post">
 			<table>
 				<tr>
 					<td>Ime:</td>
@@ -34,8 +34,7 @@ h2 {
 					<td><input type='password' name='password' /></td>
 				</tr>
 				<tr>
-					<td><input name="submit" type="submit" value="Log in" />
-					</td>
+					<td><input name="submit" type="submit" value="Log in" /></td>
 				</tr>
 			</table>
 		</form>

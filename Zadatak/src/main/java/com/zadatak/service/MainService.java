@@ -79,14 +79,14 @@ public class MainService implements ServiceBase {
 		String error = "";
 		if (contact != null) {
 			boolean check = contactExists(contact);
-			//if contact exist in database we don't do saving
-			if (!check) { 
+			//if contact exist(checking mail) in database we don't do saving
+			if (!check) { //if contact don't exist we setting his parameters and saving it into database
 				Address address = addressDAO.getByKey(addressID);
 				contact.setAddress(address);
 				Sex sex = sexDAO.getByKey(sexID);
 				contact.setSex(sex);
 				contactDAO.save(contact);
-				error = contact.getFirstName() + " " + contact.getLastName() + " added succesfully.";
+				error = contact.getFirstName() + " " + contact.getLastName() + " added succesfully."; //sending error message
 			} else {
 				error = "This contact exist in database.";
 			}
@@ -179,8 +179,8 @@ public class MainService implements ServiceBase {
 
 		List<Contact> contacts = contactDAO.findAll();
 		boolean check = false;
-		for (Contact contact : contacts) {
-			if (contact.getAddress() == addressDAO.getByKey(addressID))
+		for (Contact contact : contacts) { //checking if some contact have address we want to delete
+			if (contact.getAddress() == addressDAO.getByKey(addressID)) //if that is true we cannot delete that address
 				check = true;
 		}
 
@@ -281,8 +281,8 @@ public class MainService implements ServiceBase {
 	public String saveUpdatedCity(City city, Long cityID, Long countryID) {
 		city.setId(cityID);
 		city.setCountry(countryDAO.getByKey(countryID));
-		cityDAO.update(city);
-		return "City was updated.";
+		cityDAO.update(city); //setting parameters of city and updating it into database
+		return "City was updated."; //sending back error message
 	}
 
 	@Override

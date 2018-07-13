@@ -16,9 +16,9 @@ import com.zadatak.domain.Contact;
 import com.zadatak.service.ServiceBase;
 
 /**
- * Contact controller for handling GET and POST requests for 
- * creating new contact, changing particular contact or deleting 
- * existing contact from database.
+ * Contact controller for handling GET and POST requests for creating new
+ * contact, changing particular contact or deleting existing contact from
+ * database.
  * 
  * @author tpuhalo
  *
@@ -30,6 +30,12 @@ public class ContactController {
 	@Autowired
 	private ServiceBase serviceBase;
 
+	/**
+	 * Method for creating new blank contact and putting it into page attribute.
+	 * 
+	 * @param model
+	 * @return String
+	 */
 	@RequestMapping(value = "/newContact", method = RequestMethod.GET)
 	public String newContact(Model model) {
 		Contact contact = new Contact();
@@ -39,6 +45,15 @@ public class ContactController {
 		return "manipulation/newContact";
 	}
 
+	/**
+	 * Method for parsing new created contact to service.
+	 * 
+	 * @param address
+	 * @param result
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/saveContact", method = RequestMethod.POST)
 	public String saveContact(@Valid @ModelAttribute("newContact") Contact contact, BindingResult result, Model model,
 			HttpServletRequest request) {
@@ -52,7 +67,6 @@ public class ContactController {
 		} else {
 			long addressID = Long.parseLong(request.getParameter("addresses"));
 			long sexID = Long.parseLong(request.getParameter("sexs"));
-			System.out.println(addressID + sexID);
 			String error = serviceBase.saveNewContact(contact, addressID, sexID);
 			request.getSession().setAttribute("error", error);
 			return "redirect:/contact";
@@ -60,6 +74,13 @@ public class ContactController {
 
 	}
 
+	/**
+	 * Method for putting into page attribute contact we want edit.
+	 * 
+	 * @param request
+	 * @param model
+	 * @return String
+	 */
 	@RequestMapping(value = "/editContact", method = RequestMethod.GET)
 	public String editContact(HttpServletRequest request, Model model) {
 		long contactId = Long.parseLong(request.getParameter("id"));
@@ -74,6 +95,15 @@ public class ContactController {
 		return "manipulation/editContact";
 	}
 
+	/**
+	 * Method for parsing edited contact to service.
+	 * 
+	 * @param address
+	 * @param result
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/saveEditContact", method = RequestMethod.POST)
 	public String saveEditContact(@Valid @ModelAttribute("editContact") Contact contact, BindingResult result,
 			Model model, HttpServletRequest request) {
@@ -96,6 +126,13 @@ public class ContactController {
 
 	}
 
+	/**
+	 * Method for parsing id of contact to be deleted.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/deleteContact", method = RequestMethod.GET)
 	public String deleteContact(HttpServletRequest request) {
 		long contactId = Long.parseLong(request.getParameter("id"));

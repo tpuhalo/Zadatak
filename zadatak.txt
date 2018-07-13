@@ -36,13 +36,13 @@ koristeci bilo koji Web browser.
 	Ne ovisiti o provjerama na bazi, niti dozvoliti da korištenjem aplikacije baza dode 
 	u nekonzistentno stanje.
 
-8.-	Dokumentirati sucelje Data Access sloja i kontrolera/servleta na Web prezentacijskom 
+8.+	Dokumentirati sucelje Data Access sloja i kontrolera/servleta na Web prezentacijskom 
 	sloju koristeci Javadoc.
 	CCŽŠ hrvatski jezik u HTML-u.
 
 9.?	Zapakirati aplikaciju kao WAR (uz WAR datoteku potrebno je poslati i source kod).
 
-10.-	Sav kod treba biti pisan na engleskom jeziku (ukljucujuci identifikatore i komentare), 
+10.+	Sav kod treba biti pisan na engleskom jeziku (ukljucujuci identifikatore i komentare), 
 	dobro organiziran, bez ponavljanja, formatiran prema uobicajnim standardima programiranja u Javi. 
 
 11.+	Po potrebi možete koristiti 3rd pary biblioteke, frameworke i alate (npr Maven), 
@@ -50,6 +50,6 @@ koristeci bilo koji Web browser.
 
 12.+	Izgled korisnickog sucelja ne mora biti estetski dotjeran ali treba biti jasan i funkcionalan.
 
-13.-	Funkcionalnost autentikacija i autorizacije u aplikaciji nije nužna, ali je plus.
+13.+	Funkcionalnost autentikacija i autorizacije u aplikaciji nije nužna, ali je plus.
 
 14.-	Programiranje na klijentskoj strani (JavaScript) nije nužno ali je plus.

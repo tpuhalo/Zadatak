@@ -16,9 +16,9 @@ import com.zadatak.domain.Country;
 import com.zadatak.service.ServiceBase;
 
 /**
- * Country controller for handling GET and POST requests for 
- * creating new country, changing particular country or deleting 
- * existing country from database.
+ * Country controller for handling GET and POST requests for creating new
+ * country, changing particular country or deleting existing country from
+ * database.
  * 
  * @author tpuhalo
  *
@@ -30,6 +30,12 @@ public class CountryController {
 	@Autowired
 	private ServiceBase serviceBase;
 
+	/**
+	 * Method for creating new blank country and putting it into page attribute.
+	 * 
+	 * @param model
+	 * @return String
+	 */
 	@RequestMapping(value = "/newCountry", method = RequestMethod.GET)
 	public String newCountry(Model model) {
 		Country country = new Country();
@@ -37,6 +43,15 @@ public class CountryController {
 		return "manipulation/newCountry";
 	}
 
+	/**
+	 * Method for parsing new created country to service.
+	 * 
+	 * @param address
+	 * @param result
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/saveCountry", method = RequestMethod.POST)
 	public String saveCountry(@Valid @ModelAttribute("newCountry") Country country, BindingResult result, Model model,
 			HttpServletRequest request) {
@@ -52,6 +67,13 @@ public class CountryController {
 
 	}
 
+	/**
+	 * Method for putting into page attribute country we want edit.
+	 * 
+	 * @param request
+	 * @param model
+	 * @return String
+	 */
 	@RequestMapping(value = "/editCountry", method = RequestMethod.GET)
 	public String editCountry(HttpServletRequest request, Model model) {
 		long countryID = Long.parseLong(request.getParameter("id"));
@@ -63,6 +85,15 @@ public class CountryController {
 		return "manipulation/editCountry";
 	}
 
+	/**
+	 * Method for parsing edited country to service.
+	 * 
+	 * @param address
+	 * @param result
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/saveEditCountry", method = RequestMethod.POST)
 	public String saveEditCountry(@Valid @ModelAttribute("editCountry") Country country, BindingResult result,
 			Model model, HttpServletRequest request) {
@@ -81,6 +112,13 @@ public class CountryController {
 
 	}
 
+	/**
+	 * Method for parsing id of country to be deleted.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/deleteCountry", method = RequestMethod.GET)
 	public String deleteCountry(HttpServletRequest request) {
 		long countryId = Long.parseLong(request.getParameter("id"));

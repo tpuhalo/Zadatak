@@ -18,6 +18,13 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
+
+/**
+ * Spring configuration class.
+ * 
+ * @author tpuhalo
+ *
+ */
 @Configuration
 @ComponentScan("com.zadatak")
 @EnableWebMvc
@@ -26,6 +33,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
 	private static final Charset UTF8 = Charset.forName("UTF-8");
 
+	
 	@Bean
 	public UrlBasedViewResolver urlBasedViewResolver() {
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
@@ -40,7 +48,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		registry.addViewController("/").setViewName("home");
 	}
 
-	@Override
+	@Override 
 	public void configurePathMatch(PathMatchConfigurer matcher) {
 		matcher.setUseRegisteredSuffixPatternMatch(true);
 	}

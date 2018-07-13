@@ -15,8 +15,8 @@ public class CityDao extends DaoClass<Long, City> {
 		super(City.class);
 	}
 
-	public void deleteById(Long id) {
-		Criteria crit = createEntityCriteria();
+	public void deleteById(Long id) { //creating criteria for deleting city
+		Criteria crit = createEntityCriteria(); // we can only delete city with id
 		crit.add(Restrictions.eq("id", id));
 		City city = (City) crit.uniqueResult();
 		delete(city);

@@ -16,9 +16,8 @@ import com.zadatak.domain.City;
 import com.zadatak.service.ServiceBase;
 
 /**
- * City controller for handling GET and POST requests for 
- * creating new city, changing particular city or deleting 
- * existing city from database.
+ * City controller for handling GET and POST requests for creating new city,
+ * changing particular city or deleting existing city from database.
  * 
  * @author tpuhalo
  *
@@ -30,9 +29,12 @@ public class CityController {
 	@Autowired
 	private ServiceBase serviceBase;
 
-	public CityController() {
-
-	}
+	/**
+	 * Method for creating new blank city and putting it into page attribute.
+	 * 
+	 * @param model
+	 * @return String
+	 */
 
 	@RequestMapping(value = "/newCity", method = RequestMethod.GET)
 	public String newAddress(Model model) {
@@ -42,6 +44,15 @@ public class CityController {
 		return "manipulation/newCity";
 	}
 
+	/**
+	 * Method for parsing new created city to service.
+	 * 
+	 * @param address
+	 * @param result
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/saveCity", method = RequestMethod.POST)
 	public String saveAddress(@Valid @ModelAttribute("cityInfo") City city, BindingResult result, Model model,
 			HttpServletRequest request) {
@@ -58,6 +69,13 @@ public class CityController {
 		}
 	}
 
+	/**
+	 * Method for putting into page attribute city we want edit.
+	 * 
+	 * @param request
+	 * @param model
+	 * @return String
+	 */
 	@RequestMapping(value = "/editCity", method = RequestMethod.GET)
 	public String editAddress(HttpServletRequest request, Model model) {
 		long cityId = Long.parseLong(request.getParameter("id"));
@@ -69,6 +87,15 @@ public class CityController {
 		return "manipulation/editCity";
 	}
 
+	/**
+	 * Method for parsing edited city to service.
+	 * 
+	 * @param address
+	 * @param result
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/saveEditCity", method = RequestMethod.POST)
 	public String saveEditAddress(@Valid @ModelAttribute("editCity") City city, BindingResult result, Model model,
 			HttpServletRequest request) {
@@ -90,6 +117,13 @@ public class CityController {
 
 	}
 
+	/**
+	 * Method for parsing id of city to be deleted.
+	 * 
+	 * @param model
+	 * @param request
+	 * @return String
+	 */
 	@RequestMapping(value = "/deleteCity", method = RequestMethod.GET)
 	public String deleteCity(Model model, HttpServletRequest request) {
 		long cityId = Long.parseLong(request.getParameter("id"));
