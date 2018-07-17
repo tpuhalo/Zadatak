@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,32 +36,33 @@ public class ControllerMain {
 		return "home";
 	}
 
-	/**
-	 * Method for login.
-	 * 
-	 * @param username
-	 * @param password
-	 * @return String
-	 */
-
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String logIn(@Valid @ModelAttribute("username") String username,
-			@Valid @ModelAttribute("password") String password) {
-		String view = "";
-		// verification of user
-		if (username.equals("user") && password.equals("12345")) { // if username is
-																	// user and password 12345
-			view = "redirect:/contact"; // redirect to contact
-		} else { // if not we staying at home
-			view = "home";
-		}
-		return view;
-	}
-
-	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logOut() {
-		return "home";
-	}
+	// //Testing controller login
+	// /**
+	// * Method for login.
+	// *
+	// * @param username
+	// * @param password
+	// * @return String
+	// */
+	//
+	// @RequestMapping(value = "/login", method = RequestMethod.GET)
+	// public String logIn(@Valid @ModelAttribute("username") String username,
+	// @Valid @ModelAttribute("password") String password) {
+	// String view = "";
+	// // verification of user
+	// if (username.equals("user") && password.equals("12345")) { // if username is
+	// // user and password 12345
+	// view = "redirect:/contact"; // redirect to contact
+	// } else { // if not we staying at home
+	// view = "home";
+	// }
+	// return view;
+	// }
+	//
+	// @RequestMapping(value = "/logout", method = RequestMethod.GET)
+	// public String logOut() {
+	// return "home";
+	// }
 
 	/**
 	 * Method for fetching contacts from service. And putting them to the page

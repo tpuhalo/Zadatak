@@ -32,7 +32,6 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 public class WebMvcConfig implements WebMvcConfigurer {
 
 	private static final Charset UTF8 = Charset.forName("UTF-8");
-
 	
 	@Bean
 	public UrlBasedViewResolver urlBasedViewResolver() {
