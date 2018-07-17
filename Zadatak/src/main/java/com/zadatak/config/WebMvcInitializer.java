@@ -1,21 +1,31 @@
 package com.zadatak.config;
 
+
+
+
+import javax.servlet.Filter;
+
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebMvcInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { WebMvcInitializer.class };
+		return new Class[] { WebMvcConfig.class };
 	}
 
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
-		return new Class[] { WebMvcConfig.class};
+		return null;
 	}
 
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
+    @Override
+    protected Filter[] getServletFilters() {
+        return new Filter[] { new DelegatingFilterProxy("springSecurityFilterChain") };
+    }
 }

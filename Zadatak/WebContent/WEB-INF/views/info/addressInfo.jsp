@@ -25,10 +25,15 @@ table, th, td {
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<h2 align="center" style="color: #DF01010">Adresar</h2>
 	<hr />
+
+
 	<div align="right">
-		<form action="${contextPath}/logout" method="GET">
-			<input type="submit" value="Log out" />
+		<form action="<c:url value='/j_spring_security_logout' />"
+			method="post" id="logoutForm">
+			<input type="submit" value="Log out" name="${_csrf.parameterName}"
+				value="${_csrf.token}" />
 		</form>
+
 	</div>
 
 	<div align="center">
@@ -74,7 +79,7 @@ table, th, td {
 	</div>
 	<hr>
 	<div align="right">
- <br /> Tihomir Puhalo
+		<br /> Tihomir Puhalo
 
 	</div>
 </body>

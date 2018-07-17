@@ -10,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.zadatak.domain.Address;
 import com.zadatak.domain.City;
@@ -22,7 +24,6 @@ import com.zadatak.service.ServiceBase;
  * cities and countries saved in database.
  * 
  * @author tpuhalo
- *
  */
 
 @Controller
@@ -36,28 +37,30 @@ public class ControllerMain {
 		return "home";
 	}
 
-	// //Testing controller login
-	// /**
-	// * Method for login.
-	// *
-	// * @param username
-	// * @param password
-	// * @return String
-	// */
-	//
-	// @RequestMapping(value = "/login", method = RequestMethod.GET)
-	// public String logIn(@Valid @ModelAttribute("username") String username,
-	// @Valid @ModelAttribute("password") String password) {
-	// String view = "";
-	// // verification of user
-	// if (username.equals("user") && password.equals("12345")) { // if username is
-	// // user and password 12345
-	// view = "redirect:/contact"; // redirect to contact
-	// } else { // if not we staying at home
-	// view = "home";
-	// }
-	// return view;
-	// }
+	 /**
+	 * Method for login.
+	 *
+	 * @param username
+	 * @param password
+	 * @return String
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
+			@RequestParam(value = "logout", required = false) String logout) {
+
+		ModelAndView model = new ModelAndView();
+		if (error != null) {
+			model.addObject("error", "Invalid username and password!");
+		}
+
+		if (logout != null) {
+			model.addObject("msg", "You've been logged out successfully.");
+		}
+		model.setViewName("home");
+
+		return model;
+
+	}
 	//
 	// @RequestMapping(value = "/logout", method = RequestMethod.GET)
 	// public String logOut() {
