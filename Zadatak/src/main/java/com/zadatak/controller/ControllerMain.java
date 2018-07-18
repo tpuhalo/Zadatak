@@ -37,14 +37,14 @@ public class ControllerMain {
 		return "home";
 	}
 
-	 /**
+	/**
 	 * Method for login.
 	 *
 	 * @param username
 	 * @param password
 	 * @return String
 	 */
-	@RequestMapping(value = "/login", method = RequestMethod.POST)
+	@RequestMapping(value = { "/login", "/logout" }, method = RequestMethod.POST)
 	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
 			@RequestParam(value = "logout", required = false) String logout) {
 
@@ -61,11 +61,6 @@ public class ControllerMain {
 		return model;
 
 	}
-	//
-	// @RequestMapping(value = "/logout", method = RequestMethod.GET)
-	// public String logOut() {
-	// return "home";
-	// }
 
 	/**
 	 * Method for fetching contacts from service. And putting them to the page

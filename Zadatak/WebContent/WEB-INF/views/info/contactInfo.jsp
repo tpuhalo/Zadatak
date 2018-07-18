@@ -24,7 +24,8 @@ table, th, td {
 	<hr />
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<div align="right">
-		<form action="${contextPath}/logout" method="GET">
+		<form action="logout" method="POST">
+		    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 			<input type="submit" value="Log out" />
 		</form>
 	</div>

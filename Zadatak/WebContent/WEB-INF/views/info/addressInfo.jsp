@@ -28,12 +28,10 @@ table, th, td {
 
 
 	<div align="right">
-		<form action="<c:url value='/j_spring_security_logout' />"
-			method="post" id="logoutForm">
-			<input type="submit" value="Log out" name="${_csrf.parameterName}"
-				value="${_csrf.token}" />
+		<form action="logout" method="POST">
+		    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+			<input type="submit" value="Log out" />
 		</form>
-
 	</div>
 
 	<div align="center">
